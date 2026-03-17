@@ -1,0 +1,70 @@
+{
+  "normal": [
+    {
+      "title": "Nasi Ikan Goreng dan Tumis Buncis Wortel",
+      "image": "nasi_ikan_goreng.png"
+    },
+    {
+      "title": "Nasi Ayam Bakar dan Sayur Sop",
+      "image": "nasi_ayam_bakar_sop.png"
+    },
+    {
+      "title": "Nasi Sup Ayam Sayuran",
+      "image": "nasi_sup_ayam.png"
+    },
+    {
+      "title": "Nasi Tahu Tempe dan Tumis Kangkung",
+      "image": "nasi_tahu_tempe.png"
+    },
+    {
+      "title": "Nasi Ikan Bakar dan Tumis Brokoli",
+      "image": "nasi_ikan_bakar.png"
+    }
+  ],
+
+  "stunting": [
+    {
+      "title": "Nasi Telur Dadar Bayam",
+      "image": "nasi_telur_bayam.png"
+    },
+    {
+      "title": "Nasi Ayam Goreng dan Sayur Kangkung",
+      "image": "nasi_ayam_kangkung.png"
+    },
+    {
+      "title": "Nasi Ikan Kembung dan Sayur Sop",
+      "image": "nasi_ikan_kembung.png"
+    },
+    {
+      "title": "Nasi Telur Rebus dan Tumis Buncis",
+      "image": "nasi_telur_buncis.png"
+    },
+    {
+      "title": "Nasi Tahu Goreng dan Tumis Brokoli",
+      "image": "nasi_tahu_brokoli.png"
+    }
+  ],
+
+  "stunting_berat": [
+    {
+      "title": "Nasi Ayam Bakar dan Tumis Kacang Panjang",
+      "image": "nasi_ayam_kacang.png"
+    },
+    {
+      "title": "Nasi Telur Dadar Keju dan Brokoli",
+      "image": "nasi_telur_keju.png"
+    },
+    {
+      "title": "Nasi Tim Ayam Wortel",
+      "image": "nasi_tim_ayam.png"
+    },
+    {
+      "title": "Nasi Ikan Tuna Panggang dan Bayam",
+      "image": "nasi_tuna_bayam.png"
+    },
+    {
+      "title": "Sup Ayam Wortel Kentang",
+      "image": "sup_ayam_kentang.png"
+    }
+  ]
+}
