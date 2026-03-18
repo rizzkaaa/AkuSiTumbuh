@@ -13,31 +13,42 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   int selectedIndex = 0;
+  int menuFilterIndex = -1;
 
-  final pages = [
-    {'icon': Icons.home_filled, 'content': HomeContent()},
-    {'icon': Icons.search, 'content': DetectionContent()},
-    {
-      'icon': Icons.medical_information,
-      'content': Center(child: Text("Konsultasi")),
-    },
-    {'icon': Icons.restaurant, 'content': MenuContent()},
-    {'icon': Icons.history, 'content': Center(child: Text("History"))},
-    {'icon': Icons.person, 'content': Center(child: Text("Profile"))},
-  ];
+  void goToMenu(int value) {
+    setState(() {
+      menuFilterIndex = value;
+      selectedIndex = 3;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final pages = [
+      {'icon': Icons.home_filled, 'content': HomeContent()},
+      {'icon': Icons.search, 'content': DetectionContent(goToMenu: goToMenu)},
+      {
+        'icon': Icons.medical_information,
+        'content': Center(child: Text("Konsultasi")),
+      },
+      {
+        'icon': Icons.restaurant,
+        'content': MenuContent(indexResult: menuFilterIndex),
+      },
+      {'icon': Icons.history, 'content': Center(child: Text("History"))},
+      {'icon': Icons.person, 'content': Center(child: Text("Profile"))},
+    ];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: GradientBackground(
         content: SafeArea(child: pages[selectedIndex]['content'] as Widget),
       ),
-      bottomNavigationBar: _customBottomNavBar(),
+      bottomNavigationBar: _customBottomNavBar(pages),
     );
   }
 
-  Widget _customBottomNavBar() {
+  Widget _customBottomNavBar(List<Map<String, dynamic>> pages) {
     return Container(
       padding: const EdgeInsets.only(top: 5),
       decoration: BoxDecoration(
@@ -53,10 +64,7 @@ class _HomepageState extends State<Homepage> {
           color: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
         ),
-        padding: const EdgeInsets.only(
-          top: 10,
-          bottom: 15,
-        ),
+        padding: const EdgeInsets.only(top: 10, bottom: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: pages.asMap().entries.map((entry) {
@@ -69,11 +77,9 @@ class _HomepageState extends State<Homepage> {
 
   Widget _navBarItem(IconData icon, int index) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
-      },
+      onTap: () => setState(() {
+        selectedIndex = index;
+      }),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

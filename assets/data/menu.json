@@ -2,69 +2,730 @@
   "normal": [
     {
       "title": "Nasi Ikan Goreng dan Tumis Buncis Wortel",
-      "image": "nasi_ikan_goreng.png"
+      "image": "nasi_ikan_goreng.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Ikan segar (ikan kembung / ikan nila / ikan tongkol) : 60 gram",
+        "Buncis segar : 30 gram",
+        "Wortel : 20 gram"
+      ],
+      "bumbudanBahanTambahan": [
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Bawang merah : 1 siung (±3 gram), iris tipis",
+        "Garam : ±1 gram",
+        "Minyak goreng : 1 sendok makan (±10 ml)",
+        "Air : 20-30 ml (untuk menumis sayur)"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Cuci ikan dengan air bersih hingga bersih dari kotoran.",
+            "Lumuri ikan dengan sedikit garam pada kedua sisi ikan.",
+            "Diamkan sekitar 5-10 menit agar bumbu meresap.",
+            "Cuci buncis hingga bersih lalu potong menjadi bagian kecil sekitar 2-3 cm.",
+            "Kupas wortel, cuci bersih, lalu potong kecil agar cepat matang.",
+            "Kupas bawang putih dan bawang merah kemudian cincang atau iris tipis."
+          ]
+        },
+        {
+          "label": "Menggoreng Ikan",
+          "langkah": [
+            "Panaskan minyak goreng dalam wajan dengan api sedang.",
+            "Masukkan ikan secara perlahan ke dalam minyak panas.",
+            "Goreng ikan selama ±3-4 menit setiap sisi hingga matang dan berwarna keemasan.",
+            "Angkat ikan dan tiriskan minyaknya."
+          ]
+        },
+        {
+          "label": "Membuat Tumis Buncis Wortel",
+          "langkah": [
+            "Panaskan sekitar 1 sendok teh minyak dalam wajan.",
+            "Tumis bawang merah dan bawang putih hingga harum.",
+            "Masukkan wortel terlebih dahulu lalu tambahkan sedikit air.",
+            "Masak sekitar 2 menit hingga wortel mulai empuk.",
+            "Masukkan buncis lalu aduk hingga tercampur.",
+            "Tambahkan sedikit garam dan masak 1-2 menit hingga sayuran matang."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein (ikan) → membantu pertumbuhan tubuh.",
+        "Omega-3 (ikan) → baik untuk perkembangan otak.",
+        "Vitamin A (wortel) → menjaga kesehatan mata.",
+        "Vitamin C (buncis) → meningkatkan daya tahan tubuh.",
+        "Serat (buncis dan wortel) → membantu pencernaan."
+      ]
     },
     {
       "title": "Nasi Ayam Bakar dan Sayur Sop",
-      "image": "nasi_ayam_bakar_sop.png"
+      "image": "nasi_ayam_bakar_sop.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Daging ayam : 60 gram",
+        "Wortel : 30 gram",
+        "Kentang : 40 gram"
+      ],
+      "bumbudanBahanTambahan": [
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Bawang merah : 1 siung (±3 gram), iris tipis",
+        "Garam : ±1 gram",
+        "Minyak goreng : 1 sendok teh (untuk memanggang ayam)",
+        "Air : 300 ml (untuk membuat sayur sop)"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Cuci daging ayam dengan air bersih hingga tidak ada sisa darah.",
+            "Kupas wortel dan kentang, lalu cuci hingga bersih.",
+            "Potong wortel menjadi irisan tipis atau dadu kecil.",
+            "Potong kentang menjadi potongan kecil agar lebih cepat matang.",
+            "Kupas bawang merah dan bawang putih lalu iris tipis."
+          ]
+        },
+        {
+          "label": "Memasak Ayam Bakar",
+          "langkah": [
+            "Rebus ayam dalam air mendidih selama sekitar 10-15 menit hingga setengah matang.",
+            "Angkat ayam lalu tiriskan.",
+            "Panaskan sedikit minyak pada wajan atau alat panggang.",
+            "Panggang ayam hingga matang dan bagian luar sedikit kecoklatan."
+          ]
+        },
+        {
+          "label": "Membuat Sayur Sop",
+          "langkah": [
+            "Rebus air dalam panci hingga mendidih.",
+            "Masukkan bawang merah dan bawang putih agar kuah menjadi harum.",
+            "Tambahkan potongan wortel dan kentang.",
+            "Masak selama 5-7 menit hingga sayuran empuk.",
+            "Tambahkan sedikit garam lalu aduk hingga tercampur."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein (ayam) → membantu pertumbuhan dan perbaikan jaringan tubuh.",
+        "Vitamin A (wortel) → menjaga kesehatan mata.",
+        "Vitamin C (kentang) → membantu meningkatkan daya tahan tubuh."
+      ]
     },
     {
       "title": "Nasi Sup Ayam Sayuran",
-      "image": "nasi_sup_ayam.png"
+      "image": "nasi_sup_ayam.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Daging ayam : 60 gram",
+        "Wortel : 30 gram",
+        "Kentang : 40 gram",
+        "Kol : 30 gram",
+        "Air : 300 ml"
+      ],
+      "bumbudanBahanTambahan": [
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Bawang merah : 1 siung (±3 gram), iris tipis",
+        "Garam : ±1 gram",
+        "Seledri : sedikit (opsional, untuk menambah aroma)"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Cuci daging ayam hingga bersih lalu potong menjadi bagian kecil agar mudah dimakan anak.",
+            "Kupas wortel dan kentang kemudian cuci hingga bersih.",
+            "Potong wortel menjadi irisan tipis atau potongan dadu kecil.",
+            "Potong kentang menjadi ukuran kecil agar cepat matang.",
+            "Cuci kol lalu iris tipis.",
+            "Kupas bawang merah dan bawang putih kemudian iris tipis."
+          ]
+        },
+        {
+          "label": "Membuat Sup Ayam Sayuran",
+          "langkah": [
+            "Rebus air dalam panci hingga mendidih.",
+            "Masukkan potongan ayam ke dalam air mendidih lalu masak sekitar 5-7 menit hingga ayam setengah matang.",
+            "Tambahkan bawang merah dan bawang putih agar kuah menjadi lebih harum.",
+            "Masukkan potongan wortel dan kentang, kemudian masak sekitar 5 menit hingga mulai empuk.",
+            "Tambahkan kol dan sedikit garam lalu aduk perlahan.",
+            "Masak kembali sekitar 2-3 menit hingga semua sayuran matang dan kuah sup terasa harum."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein (ayam) → membantu pertumbuhan tubuh.",
+        "Vitamin A (wortel) → menjaga kesehatan mata.",
+        "Vitamin C (kol) → meningkatkan daya tahan tubuh.",
+        "Serat (sayuran) → membantu melancarkan pencernaan."
+      ]
     },
     {
       "title": "Nasi Tahu Tempe dan Tumis Kangkung",
-      "image": "nasi_tahu_tempe.png"
+      "image": "nasi_tahu_tempe.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Tahu : 25 gram",
+        "Tempe : 25 gram",
+        "Kangkung segar : 50 gram"
+      ],
+      "bumbudanBahanTambahan": [
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Bawang merah : 1 siung (±3 gram), iris tipis",
+        "Garam : ±1 gram",
+        "Minyak goreng : 1 sendok makan (±10 ml)",
+        "Air : 20-30 ml (untuk menumis kangkung)"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Potong tahu dan tempe menjadi beberapa bagian kecil agar mudah dimakan anak.",
+            "Cuci kangkung dengan air bersih hingga tidak ada kotoran yang menempel.",
+            "Potong bagian batang kangkung yang terlalu keras, lalu sisihkan daun dan batang yang masih muda.",
+            "Kupas bawang putih dan bawang merah kemudian cincang atau iris tipis."
+          ]
+        },
+        {
+          "label": "Menggoreng Tahu dan Tempe",
+          "langkah": [
+            "Panaskan minyak goreng dalam wajan dengan api sedang.",
+            "Masukkan potongan tahu ke dalam minyak panas lalu goreng hingga berwarna kuning keemasan.",
+            "Angkat dan tiriskan tahu agar minyak berlebih berkurang.",
+            "Goreng tempe dengan cara yang sama hingga matang dan sedikit kecoklatan.",
+            "Angkat dan tiriskan."
+          ]
+        },
+        {
+          "label": "Membuat Tumis Kangkung",
+          "langkah": [
+            "Panaskan sekitar 1 sendok teh minyak dalam wajan.",
+            "Tumis bawang merah dan bawang putih hingga harum.",
+            "Masukkan kangkung lalu aduk hingga tercampur dengan bumbu.",
+            "Tambahkan sedikit air dan garam.",
+            "Masak sekitar 1-2 menit hingga kangkung layu namun masih segar agar kandungan vitaminnya tetap terjaga."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein nabati (tahu dan tempe) → membantu pertumbuhan tubuh.",
+        "Zat besi (kangkung) → membantu pembentukan sel darah merah.",
+        "Vitamin A (kangkung) → menjaga kesehatan mata.",
+        "Serat (sayuran) → membantu melancarkan pencernaan."
+      ]
     },
     {
       "title": "Nasi Ikan Bakar dan Tumis Brokoli",
-      "image": "nasi_ikan_bakar.png"
+      "image": "nasi_ikan_bakar.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Ikan segar (ikan nila / ikan kembung / ikan tongkol) : 60 gram",
+        "Brokoli : 50 gram"
+      ],
+      "bumbudanBahanTambahan": [
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Bawang merah : 1 siung (±3 gram), iris tipis",
+        "Garam : ±1 gram",
+        "Minyak goreng : 1 sendok teh (±5 ml)",
+        "Air : 20 ml (untuk menumis brokoli)"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Cuci ikan hingga bersih dengan air mengalir lalu tiriskan.",
+            "Lumuri ikan dengan sedikit garam agar rasa lebih gurih.",
+            "Diamkan sekitar 5-10 menit agar bumbu meresap.",
+            "Cuci brokoli hingga bersih lalu potong menjadi bagian kecil agar mudah dimakan anak.",
+            "Kupas bawang merah dan bawang putih kemudian iris atau cincang halus."
+          ]
+        },
+        {
+          "label": "Membakar Ikan",
+          "langkah": [
+            "Panaskan alat panggang atau wajan datar dengan api sedang.",
+            "Olesi permukaan wajan dengan sedikit minyak agar ikan tidak lengket.",
+            "Letakkan ikan di atas wajan atau alat panggang.",
+            "Panggang ikan sekitar 3-4 menit pada setiap sisi hingga matang dan bagian luar sedikit kecoklatan.",
+            "Angkat ikan lalu sisihkan."
+          ]
+        },
+        {
+          "label": "Membuat Tumis Brokoli",
+          "langkah": [
+            "Panaskan sekitar 1 sendok teh minyak dalam wajan.",
+            "Tumis bawang merah dan bawang putih hingga harum.",
+            "Masukkan potongan brokoli lalu aduk hingga tercampur dengan bumbu.",
+            "Tambahkan sedikit air dan garam.",
+            "Masak sekitar 2-3 menit hingga brokoli matang tetapi masih berwarna hijau segar."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein (ikan) → membantu pertumbuhan dan perbaikan jaringan tubuh.",
+        "Vitamin C (brokoli) → membantu meningkatkan daya tahan tubuh."
+      ]
     }
   ],
 
   "stunting": [
     {
       "title": "Nasi Telur Dadar Bayam",
-      "image": "nasi_telur_bayam.png"
+      "image": "nasi_telur_bayam.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Telur ayam : 1 butir (±55 gram)",
+        "Bayam segar : 50 gram",
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Bawang merah : 1 siung (±3 gram), iris tipis",
+        "Minyak goreng : 1 sendok teh (±5 ml)",
+        "Garam : ±1 gram"
+      ],
+      "bumbudanBahanTambahan": [],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Cuci bayam dengan air mengalir hingga bersih.",
+            "Tiriskan lalu potong kecil-kecil agar mudah tercampur dengan telur.",
+            "Kupas bawang merah dan bawang putih, lalu iris/cincang halus."
+          ]
+        },
+        {
+          "label": "Membuat Telur Dadar Bayam",
+          "langkah": [
+            "Pecahkan telur ke dalam mangkuk.",
+            "Tambahkan garam, bawang merah, dan bawang putih.",
+            "Masukkan bayam yang sudah dipotong ke dalam kocokan telur.",
+            "Aduk hingga semua bahan tercampur rata.",
+            "Panaskan minyak dalam wajan dengan api sedang.",
+            "Tuangkan adonan telur ke dalam wajan.",
+            "Masak selama ±2-3 menit, lalu balik dan masak sisi lainnya hingga matang dan berwarna keemasan.",
+            "Angkat dan tiriskan."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein (telur) → membantu pertumbuhan tubuh.",
+        "Vitamin A (bayam) → menjaga kesehatan mata.",
+        "Zat besi (bayam) → membantu pembentukan darah."
+      ]
     },
     {
       "title": "Nasi Ayam Goreng dan Sayur Kangkung",
-      "image": "nasi_ayam_kangkung.png"
+      "image": "nasi_ayam_kangkung.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Daging ayam : 60 gram",
+        "Kangkung segar : 50 gram"
+      ],
+      "bumbudanBahanTambahan": [
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Bawang merah : 1 siung (±3 gram), iris tipis",
+        "Garam : ±1 gram",
+        "Minyak goreng : 1 sendok makan (±10 ml)",
+        "Air : 20-30 ml (untuk menumis kangkung)"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Cuci daging ayam hingga bersih dari kotoran.",
+            "Potong ayam menjadi ukuran kecil agar mudah dimakan anak.",
+            "Cuci kangkung dengan air mengalir hingga bersih.",
+            "Potong bagian batang kangkung yang keras, ambil daun dan batang muda.",
+            "Kupas bawang merah dan bawang putih lalu iris/cincang halus."
+          ]
+        },
+        {
+          "label": "Memasak Ayam Goreng",
+          "langkah": [
+            "Rebus ayam dalam air mendidih selama ±10 menit hingga setengah matang.",
+            "Angkat dan tiriskan ayam.",
+            "Panaskan minyak dalam wajan dengan api sedang.",
+            "Masukkan ayam lalu goreng selama ±3-5 menit hingga matang dan berwarna kuning keemasan.",
+            "Angkat dan tiriskan minyaknya."
+          ]
+        },
+        {
+          "label": "Membuat Tumis Kangkung",
+          "langkah": [
+            "Panaskan sekitar 1 sendok teh minyak dalam wajan.",
+            "Tumis bawang merah dan bawang putih hingga harum.",
+            "Masukkan kangkung lalu aduk rata.",
+            "Tambahkan sedikit air dan garam.",
+            "Masak selama 1-2 menit hingga kangkung layu tetapi masih segar."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein (ayam) → membantu pertumbuhan tubuh.",
+        "Zat besi (kangkung) → membantu pembentukan darah."
+      ]
     },
     {
       "title": "Nasi Ikan Kembung dan Sayur Sop",
-      "image": "nasi_ikan_kembung.png"
+      "image": "nasi_ikan_kembung.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Ikan kembung : 70 gram",
+        "Wortel : 30 gram",
+        "Kentang : 40 gram"
+      ],
+      "bumbudanBahanTambahan": [
+        "Bawang merah : 1 siung (±3 gram), iris tipis",
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Garam : ±1 gram",
+        "Air : 300 ml"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Bersihkan ikan kembung, buang isi perut lalu cuci hingga bersih.",
+            "Lumuri ikan dengan sedikit garam dan diamkan 5-10 menit agar bumbu meresap.",
+            "Kupas wortel dan kentang, lalu cuci hingga bersih.",
+            "Potong wortel dan kentang menjadi ukuran kecil agar cepat matang.",
+            "Kupas bawang merah dan bawang putih, lalu iris tipis."
+          ]
+        },
+        {
+          "label": "Memasak Ikan Kembung",
+          "langkah": [
+            "Panaskan alat panggang atau wajan datar dengan api sedang.",
+            "Letakkan ikan di atas wajan, panggang selama ±3-4 menit setiap sisi hingga matang dan sedikit kecoklatan.",
+            "Angkat dan sisihkan."
+          ]
+        },
+        {
+          "label": "Membuat Sayur Sop",
+          "langkah": [
+            "Rebus air dalam panci hingga mendidih.",
+            "Masukkan bawang merah dan bawang putih agar kuah lebih harum.",
+            "Tambahkan wortel dan kentang, lalu masak selama ±5-7 menit hingga empuk.",
+            "Tambahkan sedikit garam lalu aduk rata."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Omega-3 (ikan kembung) → membantu perkembangan otak.",
+        "Protein (ikan) → membantu pertumbuhan tubuh.",
+        "Vitamin A (wortel) → menjaga kesehatan mata."
+      ]
     },
     {
       "title": "Nasi Telur Rebus dan Tumis Buncis",
-      "image": "nasi_telur_buncis.png"
+      "image": "nasi_telur_buncis.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Telur ayam : 1 butir (±55 gram)",
+        "Buncis : 50 gram"
+      ],
+      "bumbudanBahanTambahan": [
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Minyak goreng : 1 sendok teh (±5 ml)",
+        "Garam : ±1 gram",
+        "Air : 20 ml"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Cuci telur hingga bersih dari kotoran.",
+            "Cuci buncis dengan air mengalir, lalu potong kecil-kecil agar mudah dimakan.",
+            "Kupas dan cincang bawang putih."
+          ]
+        },
+        {
+          "label": "Membuat Telur Rebus",
+          "langkah": [
+            "Masukkan telur ke dalam panci berisi air hingga terendam.",
+            "Rebus dengan api sedang selama ±10 menit hingga matang sempurna.",
+            "Angkat, dinginkan sebentar, lalu kupas kulitnya."
+          ]
+        },
+        {
+          "label": "Membuat Tumis Buncis",
+          "langkah": [
+            "Panaskan minyak dalam wajan dengan api sedang.",
+            "Tumis bawang putih hingga harum.",
+            "Masukkan buncis lalu aduk rata.",
+            "Tambahkan sedikit air dan garam.",
+            "Masak selama ±3-4 menit hingga buncis matang tetapi tetap renyah."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein (telur) → membantu pertumbuhan tubuh.",
+        "Vitamin B kompleks (telur) → membantu metabolisme energi.",
+        "Serat (buncis) → membantu pencernaan."
+      ]
     },
     {
       "title": "Nasi Tahu Goreng dan Tumis Brokoli",
-      "image": "nasi_tahu_brokoli.png"
+      "image": "nasi_tahu_brokoli.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Tahu : 50 gram",
+        "Brokoli : 50 gram"
+      ],
+      "bumbudanBahanTambahan": [
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Minyak goreng : 1 sendok makan (±10 ml)",
+        "Garam : ±1 gram",
+        "Air : 20 ml"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Potong tahu menjadi beberapa bagian kecil agar mudah dimakan.",
+            "Cuci brokoli dengan air mengalir, lalu potong kecil per kuntum.",
+            "Rendam brokoli sebentar dalam air garam ringan (±5 menit) untuk membersihkan kotoran, lalu bilas.",
+            "Kupas dan cincang bawang putih."
+          ]
+        },
+        {
+          "label": "Membuat Tahu Goreng",
+          "langkah": [
+            "Panaskan minyak dalam wajan dengan api sedang.",
+            "Masukkan tahu dan goreng selama ±3-5 menit hingga berwarna kuning keemasan.",
+            "Angkat dan tiriskan minyaknya."
+          ]
+        },
+        {
+          "label": "Membuat Tumis Brokoli",
+          "langkah": [
+            "Panaskan sedikit minyak (±1 sendok teh) dalam wajan.",
+            "Tumis bawang putih hingga harum.",
+            "Masukkan brokoli lalu aduk rata.",
+            "Tambahkan sedikit air dan garam.",
+            "Masak selama ±2-3 menit hingga brokoli matang tetapi tetap hijau segar."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein nabati (tahu) → membantu pertumbuhan tubuh.",
+        "Vitamin C (brokoli) → meningkatkan daya tahan tubuh.",
+        "Vitamin K (brokoli) → membantu kesehatan tulang."
+      ]
     }
   ],
 
   "stunting_berat": [
     {
       "title": "Nasi Ayam Bakar dan Tumis Kacang Panjang",
-      "image": "nasi_ayam_kacang.png"
+      "image": "nasi_ayam_kacang.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Daging ayam : 60 gram",
+        "Kacang panjang : 50 gram"
+      ],
+      "bumbudanBahanTambahan": [
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Garam : ±1 gram",
+        "Minyak goreng : 1 sendok teh (±5 ml)",
+        "Air : 20 ml"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Cuci ayam hingga bersih, potong menjadi bagian kecil agar mudah matang.",
+            "Cuci kacang panjang, potong-potong sekitar 3-4 cm agar mudah dimakan anak.",
+            "Kupas bawang putih dan cincang halus."
+          ]
+        },
+        {
+          "label": "Memasak Ayam Bakar",
+          "langkah": [
+            "Rebus ayam dalam air mendidih selama ±10 menit hingga matang.",
+            "Tiriskan ayam lalu panaskan sedikit minyak dalam wajan atau panggangan.",
+            "Panggang ayam hingga berwarna kecoklatan dan matang sempurna."
+          ]
+        },
+        {
+          "label": "Membuat Tumis Kacang Panjang",
+          "langkah": [
+            "Panaskan minyak dalam wajan.",
+            "Tumis bawang putih hingga harum.",
+            "Masukkan kacang panjang dan sedikit air.",
+            "Tambahkan garam secukupnya.",
+            "Masak selama ±3-4 menit hingga kacang panjang matang tetapi tetap renyah."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein (ayam) → membantu pertumbuhan tubuh.",
+        "Vitamin B kompleks (ayam & kacang panjang) → mendukung metabolisme energi.",
+        "Serat (kacang panjang) → membantu pencernaan."
+      ]
     },
     {
       "title": "Nasi Telur Dadar Keju dan Brokoli",
-      "image": "nasi_telur_keju.png"
+      "image": "nasi_telur_keju.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Telur ayam : 1 butir (±55 gram)",
+        "Keju parut : 10 gram",
+        "Brokoli : 50 gram"
+      ],
+      "bumbudanBahanTambahan": [
+        "Minyak goreng : 1 sendok teh (±5 ml)",
+        "Garam : ±1 gram",
+        "Air : 20 ml (untuk menumis brokoli, opsional)"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Cuci brokoli dengan air bersih dan potong per kuntum kecil.",
+            "Siapkan telur dalam mangkuk dan parut keju.",
+            "Campurkan keju ke dalam telur dan aduk rata.",
+            "Tambahkan sedikit garam jika diinginkan."
+          ]
+        },
+        {
+          "label": "Membuat Telur Dadar Keju",
+          "langkah": [
+            "Panaskan sedikit minyak dalam wajan dengan api sedang.",
+            "Tuangkan adonan telur dan keju ke wajan.",
+            "Masak selama ±2-3 menit, lalu balik dan masak sisi lainnya hingga matang dan berwarna keemasan.",
+            "Angkat dan tiriskan."
+          ]
+        },
+        {
+          "label": "Membuat Tumis Brokoli",
+          "langkah": [
+            "Panaskan sedikit minyak (±1 sendok teh) dalam wajan.",
+            "Masukkan brokoli dan tumis sebentar selama ±2 menit hingga matang tetapi tetap hijau segar.",
+            "Tambahkan sedikit garam bila perlu."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein (telur) → membantu pertumbuhan tubuh.",
+        "Kalsium (keju) → membantu pertumbuhan tulang dan gigi.",
+        "Vitamin C (brokoli) → meningkatkan daya tahan tubuh.",
+        "Serat (brokoli) → membantu pencernaan."
+      ]
     },
     {
       "title": "Nasi Tim Ayam Wortel",
-      "image": "nasi_tim_ayam.png"
+      "image": "nasi_tim_ayam.png",
+      "bahanUtama": [
+        "Beras : 50 gram",
+        "Ayam cincang : 40 gram",
+        "Wortel : 30 gram",
+        "Air : 300 ml"
+      ],
+      "bumbudanBahanTambahan": [],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Cuci beras hingga bersih agar nasi tim lebih halus dan bersih.",
+            "Kupas wortel dan potong menjadi dadu kecil agar cepat lunak saat dikukus.",
+            "Siapkan ayam cincang yang sudah bersih."
+          ]
+        },
+        {
+          "label": "Membuat Nasi Tim",
+          "langkah": [
+            "Masukkan beras dan air ke panci atau mangkuk tahan panas untuk dikukus.",
+            "Tambahkan ayam cincang dan potongan wortel ke atas beras.",
+            "Aduk sedikit agar ayam dan wortel tercampur rata dengan beras.",
+            "Kukus atau masak dengan api kecil selama ±30-40 menit hingga semua bahan lunak dan nasi tim matang."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein (ayam) → membantu pertumbuhan tubuh.",
+        "Vitamin A (wortel) → menjaga kesehatan mata.",
+        "Serat (wortel) → membantu pencernaan."
+      ]
     },
     {
       "title": "Nasi Ikan Tuna Panggang dan Bayam",
-      "image": "nasi_tuna_bayam.png"
+      "image": "nasi_tuna_bayam.png",
+      "bahanUtama": [
+        "Nasi putih matang : 100 gram",
+        "Ikan tuna : 70 gram",
+        "Bayam segar : 50 gram"
+      ],
+      "bumbudanBahanTambahan": [
+        "Garam : ±1 gram",
+        "Minyak goreng : 1 sendok teh (opsional untuk memanggang)"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Bersihkan ikan tuna, buang isi perut dan sisik jika ada.",
+            "Cuci bayam hingga bersih lalu tiriskan.",
+            "Tambahkan sedikit garam pada ikan jika diinginkan."
+          ]
+        },
+        {
+          "label": "Memanggang Ikan Tuna",
+          "langkah": [
+            "Panaskan wajan atau alat panggang dengan api sedang.",
+            "Olesi sedikit minyak agar ikan tidak lengket.",
+            "Letakkan ikan tuna di atas wajan dan panggang selama ±3-4 menit setiap sisi hingga matang dan berwarna keemasan.",
+            "Angkat dan sisihkan."
+          ]
+        },
+        {
+          "label": "Merebus Bayam",
+          "langkah": [
+            "Rebus air dalam panci kecil hingga mendidih.",
+            "Masukkan bayam dan rebus selama ±1 menit agar layu tapi tetap hijau segar.",
+            "Tiriskan bayam dari air panas."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Omega-3 (ikan tuna) → membantu perkembangan otak.",
+        "Protein (ikan tuna) → membantu pertumbuhan tubuh.",
+        "Zat besi (bayam) → mendukung pembentukan sel darah merah."
+      ]
     },
     {
       "title": "Sup Ayam Wortel Kentang",
-      "image": "sup_ayam_kentang.png"
+      "image": "sup_ayam_kentang.png",
+      "bahanUtama": [
+        "Daging ayam : 60 gram",
+        "Wortel : 30 gram",
+        "Kentang : 40 gram",
+        "Air : 300 ml"
+      ],
+      "bumbudanBahanTambahan": [
+        "Bawang putih : 1 siung (±3 gram), cincang halus",
+        "Garam : ±1 gram"
+      ],
+      "caraMasak": [
+        {
+          "label": "Menyiapkan Bahan",
+          "langkah": [
+            "Cuci daging ayam hingga bersih dan potong kecil agar cepat matang.",
+            "Kupas wortel dan kentang, lalu potong menjadi dadu kecil agar mudah dimakan.",
+            "Kupas bawang putih dan cincang halus."
+          ]
+        },
+        {
+          "label": "Membuat Sup",
+          "langkah": [
+            "Rebus air dalam panci hingga mendidih.",
+            "Masukkan ayam lalu masak selama ±5-7 menit hingga setengah matang.",
+            "Tambahkan bawang putih, wortel, dan kentang.",
+            "Masak selama ±10 menit hingga semua bahan empuk dan kuah harum.",
+            "Tambahkan sedikit garam secukupnya."
+          ]
+        }
+      ],
+      "manfaatGizi": [
+        "Protein (ayam) → membantu pertumbuhan tubuh.",
+        "Vitamin A (wortel) → menjaga kesehatan mata.",
+        "Serat (wortel) → membantu pencernaan."
+      ]
     }
   ]
 }

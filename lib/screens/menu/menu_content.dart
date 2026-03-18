@@ -1,4 +1,9 @@
+import 'package:akusitumbuh/models/menu_model.dart';
+import 'package:akusitumbuh/screens/menu/card_menu.dart';
+import 'package:akusitumbuh/screens/menu/filter_set.dart';
+import 'package:akusitumbuh/screens/menu/search_filter.dart';
 import 'package:akusitumbuh/services/menu_service.dart';
+import 'package:akusitumbuh/widgets/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,14 +16,27 @@ class MenuContent extends StatefulWidget {
 }
 
 class _MenuContentState extends State<MenuContent> {
+  List<MenuModel> _menuList = [];
+  List<MenuModel> _allMenu = [];
+  int filterIndex = -1;
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    filterIndex = widget.indexResult ?? -1;
+    final service = MenuService();
+
+    _allMenu = (filterIndex > -1)
+        ? service.getMenuByIndex(filterIndex)
+        : service.getAllMenu();
+
+    _menuList = _allMenu;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final service = MenuService();
-    final index = widget.indexResult;
-
-    final menuList = (index != null && index > -1)
-        ? service.getMenuByIndex(index)
-        : service.getAllMenu();
+    int index = filterIndex;
 
     return SafeArea(
       child: Padding(
@@ -26,129 +44,88 @@ class _MenuContentState extends State<MenuContent> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                Text(
-                  "Rekomendari Gizi",
-                  style: GoogleFonts.jomhuria(
-                    wordSpacing: 2,
-                    letterSpacing: 1.5,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    foreground: Paint()
-                      ..style = PaintingStyle.stroke
-                      ..strokeWidth = 5
-                      ..color = Color(0xFFCEAABD),
+            HeaderText(label: "Rekomendari Gizi"),
+
+            SearchFilter(
+              controller: _searchController,
+              onChanged: (value) {
+                final keyword = value.toLowerCase();
+
+                setState(() {
+                  _menuList = _allMenu.where((item) {
+                    return item.title.toLowerCase().contains(keyword);
+                  }).toList();
+                });
+              },
+              onClear: () {
+                setState(() {
+                  _searchController.clear();
+                  _menuList = _allMenu;
+                });
+              },
+              onFiltered: () {
+                showModalBottomSheet(
+                  context: context,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(40),
+                    ),
                   ),
-                ),
-                Text(
-                  "Rekomendari Gizi",
-                  style: GoogleFonts.jomhuria(
-                    wordSpacing: 2,
-                    letterSpacing: 1.5,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
+                  builder: (context) {
+                    return FilterSet(
+                      index: index,
+                      onApply: (value) {
+                        final service = MenuService();
+
+                        setState(() {
+                          filterIndex = value;
+
+                          _allMenu = (value > -1)
+                              ? service.getMenuByIndex(value)
+                              : service.getAllMenu();
+
+                          _menuList = _allMenu;
+                        });
+                      },
+                    );
+                  },
+                );
+              },
             ),
 
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(right: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.3),
-                      border: Border.all(color: Color(0xFFD6A7C9), width: 1),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: TextField(
-                      cursorColor: Color(0xFFE3BCD1),
-                      style: GoogleFonts.inriaSerif(
-                        color: Color(0xFFD6A7C9),
-                        fontSize: 16,
-                      ),
-                      decoration: InputDecoration(
-                        hint: Text(
-                          'Cari lebih banyak',
-                          style: GoogleFonts.inriaSerif(
-                            color: Color(0xFFD6A7C9),
-                            fontSize: 16,
-                          ),
-                        ),
-                        border: OutlineInputBorder(borderSide: BorderSide.none),
-                        contentPadding: EdgeInsets.zero,
-                        icon: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.search,
-                            color: Color(0xFFE3BCD1),
-                            fontWeight: FontWeight.bold,
-                            size: 30,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFD6A7C9),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(10),
-                    ),
-                  ),
-                  child: Icon(Icons.tune, color: Color(0xFFFFEAF5), size: 30),
-                ),
-              ],
-            ),
-
-            Expanded(
-              child: ListView.builder(
-                itemCount: menuList.length,
-                itemBuilder: (context, index) {
-                  final item = menuList[index];
-                  return Stack(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(1),
-                        decoration: BoxDecoration(
-                          color: Color(0xFFD6A7C9),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [Color(0xFFF4D6E6), Colors.white],
-                                ),
-                              ),
-                              child: Text(item.title),
-                            ),
-                            Row(
-                              children: [
-                                Icon(Icons.bookmark_border),
-                                Icon(Icons.favorite_border),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
+            const SizedBox(height: 20),
+            _buildListMenu(_menuList),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildListMenu(List<MenuModel> menuList) {
+    return Expanded(
+      child: menuList.isEmpty
+          ? Center(
+              child: Text(
+                'Tidak ada menu',
+                style: GoogleFonts.inriaSerif(
+                  color: Color(0xFFD6A7C9),
+                  fontSize: 16,
+                ),
+              ),
+            )
+          : ListView.builder(
+              itemCount: menuList.length,
+              itemBuilder: (context, index) {
+                final item = menuList[index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 18,
+                    horizontal: 5,
+                  ),
+                  child: CardMenu(item: item, index: index),
+                );
+              },
+            ),
     );
   }
 }

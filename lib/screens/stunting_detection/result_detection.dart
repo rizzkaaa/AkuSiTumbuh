@@ -1,11 +1,17 @@
 import 'package:akusitumbuh/models/indicator_result_model.dart';
+import 'package:akusitumbuh/widgets/gradient_border_button.dart';
 import 'package:akusitumbuh/widgets/metal_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ResultDetection extends StatelessWidget {
+  final Function(int) goToMenu;
   final int indexResult;
-  ResultDetection({super.key, required this.indexResult});
+  ResultDetection({
+    super.key,
+    required this.indexResult,
+    required this.goToMenu,
+  });
 
   final List<IndicatorResultModel> indicators = [
     IndicatorResultModel(
@@ -132,41 +138,11 @@ class ResultDetection extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 30),
-
-                GestureDetector(
-                  child: Container(
-                    width: 200,
-                    padding: const EdgeInsets.all(2),
-                    margin: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                        colors: [Color(0xFF92A7CD), Color(0xFFFFC9E6)],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.35),
-                          blurRadius: 8,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        'Rekomendasi Gizi',
-                        style: GoogleFonts.lateef(
-                          color: Color(0xFF92A7CD),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: GradientBorderButton(
+                    label: 'Rekomendasi Gizi',
+                    onTap: () => goToMenu(indexResult),
                   ),
                 ),
               ],

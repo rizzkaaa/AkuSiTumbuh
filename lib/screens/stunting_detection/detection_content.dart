@@ -1,11 +1,13 @@
 import 'package:akusitumbuh/screens/stunting_detection/form_deteksi.dart';
 import 'package:akusitumbuh/screens/stunting_detection/result_detection.dart';
+import 'package:akusitumbuh/widgets/header_text.dart';
 import 'package:akusitumbuh/widgets/metal_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DetectionContent extends StatefulWidget {
-  const DetectionContent({super.key});
+  final Function(int) goToMenu;
+  const DetectionContent({super.key, required this.goToMenu});
 
   @override
   State<DetectionContent> createState() => _DetectionContentState();
@@ -22,33 +24,7 @@ class _DetectionContentState extends State<DetectionContent> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                Text(
-                  "Deteksi Stunting",
-                  style: GoogleFonts.jomhuria(
-                    wordSpacing: 2,
-                    letterSpacing: 1.5,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    foreground: Paint()
-                      ..style = PaintingStyle.stroke
-                      ..strokeWidth = 5
-                      ..color = Color(0xFFCEAABD),
-                  ),
-                ),
-                Text(
-                  "Deteksi Stunting",
-                  style: GoogleFonts.jomhuria(
-                    wordSpacing: 2,
-                    letterSpacing: 1.5,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
+            HeaderText(label: "Deteksi Stunting"),
 
             Container(
               padding: const EdgeInsets.all(10),
@@ -108,7 +84,10 @@ class _DetectionContentState extends State<DetectionContent> {
                       colors: [Color(0xFFF5B6D7), Color(0xFFB7C8E8)],
                     ),
                   ),
-                  child: ResultDetection(indexResult: indexResult),
+                  child: ResultDetection(
+                    indexResult: indexResult,
+                    goToMenu: widget.goToMenu,
+                  ),
                 ),
               ),
           ],

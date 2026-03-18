@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:akusitumbuh/services/stunting_checking_service.dart';
+import 'package:akusitumbuh/widgets/gradient_border_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -50,7 +51,6 @@ class _FormDeteksiState extends State<FormDeteksi> {
 
     final Z = calculateZScore(X, L, M, S);
 
-    print('X = $X\nL = $L\nM = $M\nS = $S\nZ = $Z\nMONTH = ${ageInMonths(birthDate)}');
     int indexResult = -1;
 
     if (Z >= -2) {
@@ -92,42 +92,7 @@ class _FormDeteksiState extends State<FormDeteksi> {
           ],
         ),
         const SizedBox(height: 20),
-        GestureDetector(
-          onTap: checkStunting,
-          child: Container(
-            width: 200,
-            padding: const EdgeInsets.all(2),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              gradient: LinearGradient(
-                colors: [Color(0xFF92A7CD), Color(0xFFFFC9E6)],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.35),
-                  blurRadius: 8,
-                  offset: Offset(0, 3),
-                ),
-              ],
-            ),
-            child: Container(
-              padding: const EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                'Cek Stunting',
-                style: GoogleFonts.lateef(
-                  color: Color(0xFF92A7CD),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ),
+        GradientBorderButton(label: 'Cek Stunting', onTap: checkStunting),
       ],
     );
   }
