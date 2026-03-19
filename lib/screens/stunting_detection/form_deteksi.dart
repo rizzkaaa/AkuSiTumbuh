@@ -1,12 +1,10 @@
-import 'dart:math';
-
 import 'package:akusitumbuh/services/stunting_checking_service.dart';
 import 'package:akusitumbuh/widgets/gradient_border_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FormDeteksi extends StatefulWidget {
-  final Function(int) showResult;
+  final Function(List<int>) showResult;
   const FormDeteksi({super.key, required this.showResult});
 
   @override
@@ -14,55 +12,39 @@ class FormDeteksi extends StatefulWidget {
 }
 
 class _FormDeteksiState extends State<FormDeteksi> {
+  final StuntingCheckingService _service = StuntingCheckingService();
   final TextEditingController tbController = TextEditingController();
   final TextEditingController bbController = TextEditingController();
 
-  int ageInMonths(DateTime birthDate) {
-    DateTime now = DateTime.now();
+  String alert = '';
 
-    int months =
-        (now.year - birthDate.year) * 12 + (now.month - birthDate.month);
-
-    if (now.day < birthDate.day) {
-      months--;
-    }
-
-    return months;
-  }
-
-  double calculateZScore(double height, int L, double M, double S) {
-    return (pow((height / M), L) - 1) / (L * S);
-  }
-
-  Future<int> checkStunting() async {
+  void checkStunting() async {
     FocusScope.of(context).unfocus();
-    if (tbController.text.isEmpty || bbController.text.isEmpty) return -1;
-
-    final birthDate = DateTime(2023, 3, 17);
-    final gender = 'boy';
-
-    StuntingCheckingService service = StuntingCheckingService();
-    var result = service.getData(gender, ageInMonths(birthDate));
-
-    final X = double.parse(tbController.text);
-    final L = result.L;
-    final M = result.M;
-    final S = result.S;
-
-    final Z = calculateZScore(X, L, M, S);
-
-    int indexResult = -1;
-
-    if (Z >= -2) {
-      indexResult = 0; // normal
-    } else if (Z >= -3) {
-      indexResult = 1; // stunting
-    } else {
-      indexResult = 2; // stunting berat
+    if (tbController.text.isEmpty || bbController.text.isEmpty) {
+      setState(() {
+        alert = 'Silakan isi tinggi dan berat badan anak';
+      });
+      return;
     }
 
-    widget.showResult(indexResult);
-    return indexResult;
+    final tb = double.parse(tbController.text);
+    final bb = double.parse(bbController.text);
+
+    if (tb < bb) {
+      setState(() {
+        alert = 'Tinggi dan berat badan tidak valid';
+      });
+      return;
+    }
+
+    setState(() {
+      alert = '';
+    });
+
+    final stuntingResult = await _service.checkStunting(tb);
+    final weightResult = await _service.checkWeight(tb, bb);
+    
+    widget.showResult([stuntingResult, weightResult]);
   }
 
   @override
@@ -91,8 +73,26 @@ class _FormDeteksiState extends State<FormDeteksi> {
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
+        if (alert.isNotEmpty) _buildAlert(alert),
+        const SizedBox(height: 10),
         GradientBorderButton(label: 'Cek Stunting', onTap: checkStunting),
+      ],
+    );
+  }
+
+  Widget _buildAlert(String text) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(Icons.warning_amber_rounded, color: Colors.red),
+        const SizedBox(width: 5),
+        Expanded(
+          child: Text(
+            text,
+            style: GoogleFonts.metal(color: Colors.red, fontSize: 17),
+          ),
+        ),
       ],
     );
   }

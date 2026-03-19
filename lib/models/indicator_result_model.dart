@@ -13,3 +13,17 @@ class IndicatorResultModel {
     required this.description,
   });
 }
+
+class IndicatorWeightModel {
+  final String label;
+  final String imgLabel;
+  final String warning;
+  final String note;
+
+  IndicatorWeightModel({
+    required this.label,
+    required this.imgLabel,
+    required this.warning,
+    required this.note,
+  });
+}

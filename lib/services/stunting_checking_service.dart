@@ -1,8 +1,12 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:akusitumbuh/models/data_stunting_model.dart';
 import 'package:flutter/services.dart';
 
 class StuntingCheckingService {
+  final birthDate = DateTime(2023, 3, 17);
+  final gender = 'boy';
+
   static final StuntingCheckingService _instance =
       StuntingCheckingService._internal();
 
@@ -11,26 +15,119 @@ class StuntingCheckingService {
   }
 
   StuntingCheckingService._internal();
-  List<DataStuntingModel> boys = [];
-  List<DataStuntingModel> girls = [];
+  List<DataStuntingModel> lhfaBoys = [];
+  List<DataStuntingModel> lhfaGirls = [];
+  List<DataWeightModel> wfhBoys = [];
+  List<DataWeightModel> wfhGirls = [];
 
   Future<void> loadData() async {
-    if (boys.isNotEmpty && girls.isNotEmpty) return;
+    if (lhfaBoys.isNotEmpty &&
+        lhfaGirls.isNotEmpty &&
+        wfhBoys.isNotEmpty &&
+        wfhGirls.isNotEmpty) {
+      return;
+    }
 
-    String boysJson = await rootBundle.loadString('assets/data/data-boys.json');
-    String girlsJson = await rootBundle.loadString(
-      'assets/data/data-girls.json',
+    String lhfaBoysJson = await rootBundle.loadString(
+      'assets/data/lhfa-boys.json',
+    );
+    String lhfaGirlsJson = await rootBundle.loadString(
+      'assets/data/lhfa-girls.json',
+    );
+    String wfhBoysJson = await rootBundle.loadString(
+      'assets/data/wfh-boys.json',
+    );
+    String wfhGirlsJson = await rootBundle.loadString(
+      'assets/data/wfh-girls.json',
     );
 
-    List boysData = json.decode(boysJson);
-    List girlsData = json.decode(girlsJson);
+    List lhfaBoysData = json.decode(lhfaBoysJson);
+    List lhfaGirlsData = json.decode(lhfaGirlsJson);
+    List wfhBoysData = json.decode(wfhBoysJson);
+    List wfhGirlsData = json.decode(wfhGirlsJson);
 
-    boys = boysData.map((e) => DataStuntingModel.fromJson(e)).toList();
-    girls = girlsData.map((e) => DataStuntingModel.fromJson(e)).toList();
+    lhfaBoys = lhfaBoysData.map((e) => DataStuntingModel.fromJson(e)).toList();
+    lhfaGirls = lhfaGirlsData
+        .map((e) => DataStuntingModel.fromJson(e))
+        .toList();
+    wfhBoys = wfhBoysData.map((e) => DataWeightModel.fromJson(e)).toList();
+    wfhGirls = wfhGirlsData.map((e) => DataWeightModel.fromJson(e)).toList();
   }
 
-  DataStuntingModel getData(String gender, int month) {
-    final list = gender == "boy" ? boys : girls;
+  DataStuntingModel getDataStunting(String gender, int month) {
+    final list = gender == "boy" ? lhfaBoys : lhfaGirls;
     return list.firstWhere((e) => e.month == month);
+  }
+
+  DataWeightModel getDataWeight(String gender, double height) {
+    final list = gender == "boy" ? wfhBoys : wfhGirls;
+    return list.firstWhere((e) => e.height == height);
+  }
+
+  int ageInMonths(DateTime birthDate) {
+    DateTime now = DateTime.now();
+
+    int months =
+        (now.year - birthDate.year) * 12 + (now.month - birthDate.month);
+
+    if (now.day < birthDate.day) {
+      months--;
+    }
+
+    return months;
+  }
+
+  double calculateZScoreStunting(double height, int L, double M, double S) {
+    return (pow((height / M), L) - 1) / (L * S);
+  }
+
+  double calculateZScoreWeight(double weight, double L, double M, double S) {
+    return (pow(weight / M, L) - 1) / (L * S);
+  }
+
+  Future<int> checkStunting(double tb) async {
+    var data = getDataStunting(gender, ageInMonths(birthDate));
+
+    final X = tb;
+    final L = data.L;
+    final M = data.M;
+    final S = data.S;
+
+    final Z = calculateZScoreStunting(X, L, M, S);
+
+    int stuntingResult = -1;
+
+    if (Z >= -2) {
+      stuntingResult = 0; 
+    } else if (Z >= -3) {
+      stuntingResult = 1; 
+    } else {
+      stuntingResult = 2; 
+    }
+
+    return stuntingResult;
+  }
+
+  Future<int> checkWeight(double tb, double bb) async {
+    var data = getDataWeight(gender, tb);
+
+    final X = bb;
+    final L = data.L;
+    final M = data.M;
+    final S = data.S;
+
+    final Z = calculateZScoreWeight(X, L, M, S);
+
+    int weightResult = -1;
+
+    if (Z > 2) {
+      weightResult = 2; 
+    } else if (Z < -2) {
+      weightResult = 1; 
+    } else {  
+      weightResult = 0; 
+    }
+
+    return weightResult;
   }
 }
