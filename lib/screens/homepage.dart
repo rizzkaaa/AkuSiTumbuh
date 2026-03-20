@@ -1,8 +1,10 @@
+import 'package:akusitumbuh/screens/chatbot/welcome_screen.dart';
 import 'package:akusitumbuh/screens/home/home_content.dart';
 import 'package:akusitumbuh/screens/menu/menu_content.dart';
 import 'package:akusitumbuh/screens/stunting_detection/detection_content.dart';
 import 'package:akusitumbuh/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_inset_shadow/flutter_inset_shadow.dart' as inset;
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -43,6 +45,27 @@ class _HomepageState extends State<Homepage> {
       backgroundColor: Colors.white,
       body: GradientBackground(
         content: SafeArea(child: pages[selectedIndex]['content'] as Widget),
+      ),
+      floatingActionButton: Container(
+        decoration: inset.BoxDecoration(
+          boxShadow: [
+            inset.BoxShadow(
+              color: Color(0xFF000000).withValues(alpha: 0.25,)
+              ,offset: Offset(4, -4), blurRadius: 4, inset: true
+            )
+          ],
+          color: Color(0xFFF4D6E6),
+          borderRadius: BorderRadius.circular(10)
+        ),
+        child: FloatingActionButton(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+          ),
+          child: Image.asset('assets/images/icon_bot.png', width: 40,),
+        ),
       ),
       bottomNavigationBar: _customBottomNavBar(pages),
     );
