@@ -147,7 +147,7 @@ class TeamContent extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             color: Color(0xFFF4D6E6),
             borderRadius: BorderRadius.circular(10),
@@ -158,6 +158,7 @@ class TeamContent extends StatelessWidget {
               Text(
                 tim['nama'],
                 style: GoogleFonts.libreBodoni(color: Color(0xFF996781)),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 5),
               Container(
@@ -178,7 +179,7 @@ class TeamContent extends StatelessWidget {
                                 color: Color(0xFF996781),
                                 size: 12,
                               ),
-                              const SizedBox(width: 10),
+                              const SizedBox(width: 5),
                               SelectableText(
                                 '${entry.value}',
                                 style: GoogleFonts.poppins(fontSize: 6),
