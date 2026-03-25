@@ -64,7 +64,7 @@ class _FilterSetState extends State<FilterSet> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
               child: RadioGroup<int>(
                 groupValue: selectedValue,
                 onChanged: (value) {

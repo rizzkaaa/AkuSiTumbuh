@@ -32,7 +32,7 @@ class FieldData extends StatelessWidget {
           const SizedBox(width: 10),
           isPwField
               ? Text(
-                  '● ● ● ● ● ● ● ● ●',
+                  '● ● ● ● ● ● ',
                   style: TextStyle(color: Color(0xFFC198AD), fontSize: 20),
                 )
               : Expanded(child: _buildInputText(value!)),

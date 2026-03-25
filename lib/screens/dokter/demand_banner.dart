@@ -51,19 +51,19 @@ class DemandBanner extends StatelessWidget {
                     offset: Offset(0, -20),
                     child: Text(
                       'Rp',
-                      style: GoogleFonts.libreCaslonText(fontSize: 20),
+                      style: GoogleFonts.libreCaslonText(fontSize: 15),
                     ),
                   ),
                   Text(
                     '50.000,00',
-                    style: GoogleFonts.libreCaslonText(fontSize: 35),
+                    style: GoogleFonts.libreCaslonText(fontSize: 30),
                   ),
 
                   Transform.translate(
                     offset: Offset(0, 10),
                     child: Text(
                       '/bulan',
-                      style: GoogleFonts.libreCaslonText(fontSize: 20),
+                      style: GoogleFonts.libreCaslonText(fontSize: 15),
                     ),
                   ),
                 ],

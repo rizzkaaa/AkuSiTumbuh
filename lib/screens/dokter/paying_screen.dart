@@ -29,84 +29,78 @@ class _PayingScreenState extends State<PayingScreen> {
       body: GradientBackground(
         content: SafeArea(
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomBackButton(),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: HeaderText(label: 'Pembayaran'),
-                ),
-              ),
               Row(
                 children: [
-                  const SizedBox(width: 10),
-                  Text(
-                    'Metode Pembayaran:',
-                    style: GoogleFonts.libreCaslonText(
-                      color: Color(0xFF996781),
-                      fontSize: 12,
-                    ),
-                  ),
-                  RadioGroup<String>(
-                    groupValue: selectedValue,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedValue = value!;
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Row(
-                          children: [
-                            Radio<String>(
-                              value: 'Transfer Bank',
-                              activeColor: Color(0xFF996781),
-                              side: BorderSide(
-                                color: Color(0xFF996781),
-                                width: 2,
-                              ),
-                            ),
-                            Text(
-                              'Transfer Bank',
-                              style: GoogleFonts.libreCaslonText(
-                                color: Color(0xFF996781),
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Radio<String>(
-                              value: 'E-Wallet',
-                              activeColor: Color(0xFF996781),
-                              side: BorderSide(
-                                color: Color(0xFF996781),
-                                width: 2,
-                              ),
-                            ),
-                            Text(
-                              'E-Wallet',
-                              style: GoogleFonts.libreCaslonText(
-                                color: Color(0xFF996781),
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  CustomBackButton(),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: HeaderText(label: 'Pembayaran'),
                   ),
                 ],
               ),
+              Text(
+                'Metode Pembayaran:',
+                style: GoogleFonts.libreCaslonText(
+                  color: Color(0xFF996781),
+                  fontSize: 12,
+                ),
+              ),
+              RadioGroup<String>(
+                groupValue: selectedValue,
+                onChanged: (value) {
+                  setState(() {
+                    selectedValue = value!;
+                  });
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Radio<String>(
+                          value: 'Transfer Bank',
+                          activeColor: Color(0xFF996781),
+                          side: BorderSide(color: Color(0xFF996781), width: 2),
+                        ),
+                        Text(
+                          'Transfer Bank',
+                          style: GoogleFonts.libreCaslonText(
+                            color: Color(0xFF996781),
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: selectedValue == "Transfer Bank"
-                    ? _buildTfState()
-                    : _buildEWalletState(),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Radio<String>(
+                          value: 'E-Wallet',
+                          activeColor: Color(0xFF996781),
+                          side: BorderSide(color: Color(0xFF996781), width: 2),
+                        ),
+                        Text(
+                          'E-Wallet',
+                          style: GoogleFonts.libreCaslonText(
+                            color: Color(0xFF996781),
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: selectedValue == "Transfer Bank"
+                      ? _buildTfState()
+                      : _buildEWalletState(),
+                ),
               ),
               const SizedBox(height: 10),
               SizedBox(
@@ -117,6 +111,7 @@ class _PayingScreenState extends State<PayingScreen> {
                   onPressed: () {},
                 ),
               ),
+              const SizedBox(height: 30),
             ],
           ),
         ),
@@ -125,47 +120,50 @@ class _PayingScreenState extends State<PayingScreen> {
   }
 
   Widget _buildEWalletState() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Color(0xFFE4E9FD),
-      ),
-      child: Column(
-        children: [
-          Text(
-            'SCAN ME',
-            style: GoogleFonts.libreBodoni(
-              color: Color(0xFF996781),
-              fontSize: 25,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Image.asset('assets/images/QR.png', width: 210),
-          const SizedBox(height: 20),
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(
-              'Pembayaran lebih mudah dengan menggunakan E-Wallet',
-              style: GoogleFonts.nanumMyeongjo(
-                color: Color(0xFF686868),
-                fontSize: 14,
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Color(0xFFE4E9FD),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'SCAN ME',
+              style: GoogleFonts.libreBodoni(
+                color: Color(0xFF996781),
+                fontSize: 25,
               ),
-              textAlign: TextAlign.center,
             ),
-          ),
-        ],
+            const SizedBox(height: 10),
+            Image.asset('assets/images/QR.png', width: 210),
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                'Pembayaran lebih mudah dengan menggunakan E-Wallet',
+                style: GoogleFonts.nanumMyeongjo(
+                  color: Color(0xFF686868),
+                  fontSize: 14,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildTfState() {
-    return Column(
+    return ListView(
       children: [
         Container(
           padding: const EdgeInsets.all(16),

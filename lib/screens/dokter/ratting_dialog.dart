@@ -42,7 +42,7 @@ class _RattingDialogState extends State<RattingDialog> {
               ],
             ),
             child: Container(
-              padding: const EdgeInsets.fromLTRB(24, 48, 24, 28),
+              padding: const EdgeInsets.fromLTRB(10, 48, 10, 28),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
