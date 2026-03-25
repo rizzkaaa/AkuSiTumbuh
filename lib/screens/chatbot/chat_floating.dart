@@ -1,6 +1,7 @@
 import 'package:akusitumbuh/screens/chatbot/chat_screen.dart';
 import 'package:akusitumbuh/screens/chatbot/chat_widget.dart';
 import 'package:akusitumbuh/screens/chatbot/header_text.dart';
+import 'package:akusitumbuh/widgets/gradient_backgtound3.dart';
 import 'package:flutter_inset_shadow/flutter_inset_shadow.dart' as inset;
 import 'package:flutter/material.dart';
 
@@ -47,8 +48,8 @@ class _ChatFloatingState extends State<ChatFloating> {
               child: SizedBox(
                 width: 300,
                 height: 450,
-                child: _buildBg(
-                  content: Column(
+                child: GradientBackgtound3(
+                  child: Column(
                     children: [
                       Row( 
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,28 +95,5 @@ class _ChatFloatingState extends State<ChatFloating> {
     );
   }
 
-  Widget _buildBg({required Widget content}) {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xFFCCDDFB),
-                Color(0xFFE4E9FD),
-                Color(0xFFFBDDED),
-                Colors.white,
-              ],
-              stops: [0.0, 0.3, 0.5, 1.0],
-            ),
-          ),
-        ),
 
-        content,
-      ],
-    );
-  }
 }

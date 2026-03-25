@@ -20,7 +20,7 @@ class ChatWidget extends StatelessWidget {
         );
       }
     });
-  } 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,32 +35,55 @@ class ChatWidget extends StatelessWidget {
             child: AnimatedBuilder(
               animation: chat,
               builder: (context, _) {
-                return Column(
+                return ListView(
                   children: [
-                    Expanded(
-                      child: ListView.builder(
-                        controller: _scrollController,
-                        itemCount: chat.messages.length,
-                        itemBuilder: (context, index) {
-                          final msg = chat.messages[index];
-                          final isUser = msg['role'] == 'user';
-
-                          return Align(
-                            alignment: isUser
-                                ? Alignment.topRight
-                                : Alignment.topLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: isUser
-                                  ? _buildBubbleUser(msg['content']!)
-                                  : _buildBubbleBot(msg['content']!),
-                            ),
-                          );
-                        },
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: _buildBubbleUser('Halo dok bisa bantu saya?'),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: _buildBubbleBot('Tentu! ada masalah apa?'),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: _buildBubbleUser(
+                          'Anak saya terdeteksi stunting',
+                        ),
                       ),
                     ),
 
-                    if (chat.isLoading) _buildTypingIndicator(),
+                    _buildTypingIndicator(),
+                    // Expanded(
+                    //   child: ListView.builder(
+                    //     controller: _scrollController,
+                    //     itemCount: chat.messages.length,
+                    //     itemBuilder: (context, index) {
+                    //       final msg = chat.messages[index];
+                    //       final isUser = msg['role'] == 'user';
+                    // return Align(
+                    //   alignment: isUser
+                    //       ? Alignment.topRight
+                    //       : Alignment.topLeft,
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.symmetric(vertical: 10),
+                    //     child: isUser
+                    //         ? _buildBubbleUser(msg['content']!)
+                    //         : _buildBubbleBot(msg['content']!),
+                    //   ),
+                    // );
+                    //     },
+                    //   ),
+                    // ),
+                    // if (chat.isLoading) _buildTypingIndicator(),
                   ],
                 );
               },
@@ -82,7 +105,7 @@ class ChatWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset('assets/images/icon_bot2.png', width: 30),
+        _buildPP('assets/images/1.png'),
         const SizedBox(width: 10),
         ConstrainedBox(
           constraints: BoxConstraints(maxWidth: floating ? 200 : 230),
@@ -134,12 +157,12 @@ class ChatWidget extends StatelessWidget {
 
   Widget _buildTypingIndicator() {
     return Align(
-      alignment: Alignment.topLeft,
+      alignment: Alignment.centerLeft,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset('assets/images/icon_bot2.png', width: 30),
+         _buildPP('assets/images/1.png'),
           const SizedBox(width: 10),
           ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 230),
@@ -221,5 +244,9 @@ class ChatWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildPP(String photo) {
+    return CircleAvatar(radius: 25, backgroundImage: AssetImage(photo));
   }
 }
