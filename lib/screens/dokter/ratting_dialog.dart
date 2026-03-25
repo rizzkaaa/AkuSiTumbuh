@@ -1,5 +1,6 @@
 import 'package:akusitumbuh/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RattingDialog extends StatefulWidget {
   const RattingDialog({super.key});
@@ -25,7 +26,10 @@ class _RattingDialogState extends State<RattingDialog> {
             margin: const EdgeInsets.only(top: 36),
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(50), bottom: Radius.circular(20)),
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(50),
+                bottom: Radius.circular(20),
+              ),
               gradient: LinearGradient(
                 colors: [Color(0xFF92A7CD), Color(0xFFFFC9E6)],
               ),
@@ -42,7 +46,6 @@ class _RattingDialogState extends State<RattingDialog> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
-               
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -71,7 +74,29 @@ class _RattingDialogState extends State<RattingDialog> {
 
                   const SizedBox(height: 28),
 
-                  GradientButton(label: 'Kirim', onTap: (){})
+                  GradientButton(
+                    label: 'Kirim',
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            "Rating dikirim",
+                            style: GoogleFonts.inriaSerif(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          backgroundColor: const Color.fromARGB(
+                            255,
+                            164,
+                            183,
+                            214,
+                          ),
+                        ),
+                      );
+                      Navigator.pop(context);
+                    },
+                  ),
                 ],
               ),
             ),

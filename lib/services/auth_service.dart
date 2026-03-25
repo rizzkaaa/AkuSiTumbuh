@@ -105,6 +105,11 @@ class AuthService {
     }
   }
 
+  Future<UserModel> getPhotoDokter(String id) async {
+    final doc = await _ref.collection('users').doc(id).get();
+    return UserModel.fromFirestore(doc);
+  }
+
   Future<List<DokterAnakModel>> getAllDoctors() async {
     final snapshot = await _ref.collection('dokter_anak').get();
     return snapshot.docs

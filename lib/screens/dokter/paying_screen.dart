@@ -241,6 +241,7 @@ class _PayingScreenState extends State<PayingScreen> {
                         borderRadius: BorderRadius.circular(18),
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             bank,

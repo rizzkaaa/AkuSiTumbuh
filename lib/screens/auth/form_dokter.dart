@@ -89,6 +89,7 @@ class _FormDokterState extends State<FormDokter> {
           jamSelesai: jamSelesai!,
           profile: profileController.text,
           pengalaman: int.parse(pengalamanController.text),
+          pasien: 0,
           pendidikan: pendidikanControllers.map((e) => e.text).toList(),
           keahlian: keahlian.map((e) => e!).toList(),
         ),

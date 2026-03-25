@@ -10,6 +10,7 @@ class DokterAnakModel extends BaseModel {
   final TimeOfDay _jamSelesai;
   final String _profile;
   final int _pengalaman;
+  final int _pasien;
   final List<String> _pendidikan;
   final List<String> _keahlian;
 
@@ -22,6 +23,7 @@ class DokterAnakModel extends BaseModel {
     required TimeOfDay jamSelesai,
     required String profile,
     required int pengalaman,
+    required int pasien,
     required List<String> pendidikan,
     required List<String> keahlian,
     super.createdAt,
@@ -32,6 +34,7 @@ class DokterAnakModel extends BaseModel {
        _jamSelesai = jamSelesai,
        _profile = profile,
        _pengalaman = pengalaman,
+       _pasien = pasien,
        _pendidikan = pendidikan,
        _keahlian = keahlian;
 
@@ -42,6 +45,7 @@ class DokterAnakModel extends BaseModel {
   TimeOfDay get jamSelesai => _jamSelesai;
   String get profile => _profile;
   int get pengalaman => _pengalaman;
+  int get pasien => _pasien;
   List<String> get pendidikan => _pendidikan;
   List<String> get keahlian => _keahlian;
 
@@ -65,6 +69,7 @@ class DokterAnakModel extends BaseModel {
       ),
       profile: data['profile'] ?? '',
       pengalaman: data['pengalaman'] ?? 0,
+      pasien: data['pasien'] ?? 0,
 
       pendidikan: List<String>.from(data['pendidikan'] ?? []),
       keahlian: List<String>.from(data['keahlian'] ?? []),
@@ -82,6 +87,7 @@ class DokterAnakModel extends BaseModel {
       'jamSelesai': {"hour": jamSelesai.hour, "minute": jamSelesai.minute},
       'profile': _profile,
       'pengalaman': _pengalaman,
+      'pasien': _pasien,
       'pendidikan': _pendidikan,
       'keahlian': _keahlian,
       'createdAt': FieldValue.serverTimestamp(),

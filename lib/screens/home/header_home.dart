@@ -1,10 +1,13 @@
+import 'package:akusitumbuh/models/user_model.dart';
+import 'package:akusitumbuh/screens/chat/chat_list_screen.dart';
 import 'package:akusitumbuh/screens/home/home_photo.dart';
 import 'package:akusitumbuh/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HeaderHome extends StatelessWidget {
-  const HeaderHome({super.key});
+  final UserModel currentUser;
+  const HeaderHome({super.key, required this.currentUser});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +66,10 @@ class HeaderHome extends StatelessWidget {
 
   Widget _buildProfileImage(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),)),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ProfileScreen()),
+      ),
       child: Container(
         padding: EdgeInsets.only(left: 3, top: 1, bottom: 1),
         decoration: BoxDecoration(
@@ -75,7 +81,7 @@ class HeaderHome extends StatelessWidget {
           ),
         ),
 
-        child: HomePhoto()
+        child: HomePhoto(),
       ),
     );
   }
@@ -99,8 +105,12 @@ class HeaderHome extends StatelessWidget {
         ),
         child: Row(
           children: [
-            _buildIconButton(Icons.chat, () {}),
-            _buildIconButton(Icons.pin_drop_outlined, () {}),
+            _buildIconButton(Icons.chat, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChatListScreen()),
+              );
+            }),
             _buildProfileImage(context),
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:akusitumbuh/models/user_model.dart';
 import 'package:akusitumbuh/screens/home/expansion_item.dart';
 import 'package:akusitumbuh/screens/home/header_home.dart';
 import 'package:akusitumbuh/models/education_model.dart';
@@ -73,7 +74,7 @@ class HomeContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 20),
-          HeaderHome(),
+          HeaderHome(currentUser: UserModel(docId: 'KDPXyanGtMVuO56jR3ibxVzIReu1', email: 'rizka@gmail.com', role: 'Orang Tua', photo: '', isNew: false),),
           const SizedBox(height: 40),
           Image.asset('assets/images/banner-home.png'),
           const SizedBox(height: 25),

@@ -238,7 +238,7 @@ class TeamContent extends StatelessWidget {
                       ),
                     ),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -271,7 +271,9 @@ class TeamContent extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Image.asset('assets/images/pak_setya.png'),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: Image.asset('assets/images/pak_setya.png'),),
               ),
             ],
           ),

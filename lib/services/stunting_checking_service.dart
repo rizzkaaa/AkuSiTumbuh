@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:akusitumbuh/models/data_stunting_model.dart';
+// import 'package:akusitumbuh/models/dokter_anak_model.dart';
 import 'package:akusitumbuh/models/history_model.dart';
+import 'package:akusitumbuh/models/orang_tua_model.dart';
+import 'package:akusitumbuh/services/auth_service.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,8 +12,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 class StuntingCheckingService {
   final _auth = FirebaseAuth.instance;
   final _ref = FirebaseFirestore.instance;
-  final birthDate = DateTime(2023, 3, 17);
-  final gender = 'boy';
+  final AuthService _service = AuthService();
+  // final birthDate = DateTime(2023, 3, 17);
+  // final gender = 'boy';
 
   static final StuntingCheckingService _instance =
       StuntingCheckingService._internal();
@@ -60,12 +64,12 @@ class StuntingCheckingService {
   }
 
   DataStuntingModel getDataStunting(String gender, int month) {
-    final list = gender == "boy" ? lhfaBoys : lhfaGirls;
+    final list = gender == "L" ? lhfaBoys : lhfaGirls;
     return list.firstWhere((e) => e.month == month);
   }
 
   DataWeightModel getDataWeight(String gender, double height) {
-    final list = gender == "boy" ? wfhBoys : wfhGirls;
+    final list = gender == "L" ? wfhBoys : wfhGirls;
     return list.firstWhere((e) => e.height == height);
   }
 
@@ -91,12 +95,15 @@ class StuntingCheckingService {
   }
 
   Future<int> checkStunting(double tb, double bb) async {
-    final month = ageInMonths(birthDate);
+    final OrangTuaModel orangTua =
+        await _service.getProfile('Orang Tua') as OrangTuaModel;
+
+    final month = ageInMonths(orangTua.ttl);
     if (month < 24 || month > 60) {
-      print(month);
       return -1;
     }
-    var data = getDataStunting(gender, ageInMonths(birthDate));
+      print(month);
+    var data = getDataStunting(orangTua.jenisKelamin, month);
 
     final X = tb;
     final L = data.L;
@@ -124,7 +131,10 @@ class StuntingCheckingService {
   }
 
   Future<int> checkWeight(double tb, double bb) async {
-    var data = getDataWeight(gender, tb);
+    final OrangTuaModel orangTua =
+        await _service.getProfile('Orang Tua') as OrangTuaModel;
+
+    var data = getDataWeight(orangTua.jenisKelamin, tb);
 
     final X = bb;
     final L = data.L;
@@ -152,13 +162,17 @@ class StuntingCheckingService {
     final snapshot = await _ref
         .collection('history')
         .where('userID', isEqualTo: uid)
+        .orderBy('createdAt', descending: true)
         .get();
     return snapshot.docs.map((doc) => HistoryModel.fromFirestore(doc)).toList();
   }
 
   Future<void> insertHistory(double tb, double bb, String status) async {
     final uid = _auth.currentUser!.uid;
-    final month = ageInMonths(birthDate);
+    final OrangTuaModel orangTua =
+        await _service.getProfile('Orang Tua') as OrangTuaModel;
+
+    final month = ageInMonths(orangTua.ttl);
 
     await _ref
         .collection('history')

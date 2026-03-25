@@ -25,6 +25,7 @@ class _EditDokterState extends State<EditDokter> {
   final TextEditingController profileController = TextEditingController();
   final TextEditingController pengalamanController = TextEditingController();
   List<TextEditingController> pendidikanControllers = [TextEditingController()];
+  int pasien = 0;
   List<String?> keahlian = [null];
   TimeOfDay? jamMulai;
   TimeOfDay? jamSelesai;
@@ -44,6 +45,7 @@ class _EditDokterState extends State<EditDokter> {
     jamSelesai = data.jamSelesai;
     profileController.text = data.profile;
     pengalamanController.text = '${data.pengalaman}';
+    pasien = data.pasien;
     pendidikanControllers = data.pendidikan
         .map((e) => TextEditingController(text: e))
         .toList();
@@ -79,6 +81,7 @@ class _EditDokterState extends State<EditDokter> {
           jamMulai: jamMulai!,
           jamSelesai: jamSelesai!,
           profile: profileController.text,
+          pasien: pasien,
           pengalaman: int.parse(pengalamanController.text),
           pendidikan: pendidikanControllers.map((e) => e.text).toList(),
           keahlian: keahlian.map((e) => e!).toList(),
