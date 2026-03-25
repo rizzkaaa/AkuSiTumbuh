@@ -1,5 +1,6 @@
 import 'package:akusitumbuh/screens/auth/login_page.dart';
 import 'package:akusitumbuh/screens/homepage.dart';
+import 'package:akusitumbuh/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (userID == null) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => LoginPage()),
+            MaterialPageRoute(builder: (context) => OnboardingScreen()),
           );
         } else {
           Navigator.push(

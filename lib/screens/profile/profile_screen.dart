@@ -1,7 +1,6 @@
-import 'package:akusitumbuh/screens/auth/login_page.dart';
 import 'package:akusitumbuh/screens/profile/dokter_screen.dart';
+import 'package:akusitumbuh/screens/profile/logout_alert.dart';
 import 'package:akusitumbuh/screens/profile/orang_tua_screen.dart';
-import 'package:akusitumbuh/services/auth_service.dart';
 import 'package:akusitumbuh/widgets/custom_back_button.dart';
 import 'package:akusitumbuh/widgets/gradient_background2.dart';
 import 'package:akusitumbuh/widgets/header_text.dart';
@@ -32,9 +31,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       userLevel = prefs.getString('userLevel');
     });
   }
-
-  final AuthService _service = AuthService();
-  final String role = 'Orang Tua';
 
   @override
   Widget build(BuildContext context) {
@@ -81,14 +77,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         Padding(
           padding: const EdgeInsets.only(right: 10),
           child: IconButton(
-            onPressed: () async {
-              await _service.logout();
-              if (context.mounted) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                );
-              }
+            onPressed: () {
+              showDialog(
+                context: context,
+                barrierColor: Colors.black.withValues(alpha: 0.3),
+                builder: (_) => LogoutAlert(),
+              );
             },
             icon: Icon(Icons.meeting_room, color: Colors.white, size: 30),
           ),

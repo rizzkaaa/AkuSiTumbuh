@@ -32,7 +32,7 @@ class GradientBorderButton extends StatelessWidget {
           ],
         ),
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 40),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(8),

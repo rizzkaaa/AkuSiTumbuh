@@ -1,3 +1,4 @@
+import 'package:akusitumbuh/screens/dokter/payment_success.dart';
 import 'package:akusitumbuh/widgets/custom_back_button.dart';
 import 'package:akusitumbuh/widgets/gradient_background.dart';
 import 'package:akusitumbuh/widgets/gradient_button_3d.dart';
@@ -108,7 +109,12 @@ class _PayingScreenState extends State<PayingScreen> {
                 child: GradientButton3d(
                   isLoading: false,
                   text: 'Bayar',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PaymentSuccess()),
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: 30),
