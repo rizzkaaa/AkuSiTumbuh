@@ -15,10 +15,12 @@ class _FormDeteksiState extends State<FormDeteksi> {
   final StuntingCheckingService _service = StuntingCheckingService();
   final TextEditingController tbController = TextEditingController();
   final TextEditingController bbController = TextEditingController();
-
+  bool isLoading = false;
+  bool isDone = false;
   String alert = '';
 
   void checkStunting() async {
+    if (isLoading || isDone) return;
     FocusScope.of(context).unfocus();
     if (tbController.text.isEmpty || bbController.text.isEmpty) {
       setState(() {
@@ -26,6 +28,8 @@ class _FormDeteksiState extends State<FormDeteksi> {
       });
       return;
     }
+
+    setState(() => isLoading = true);
 
     final tb = double.parse(tbController.text);
     final bb = double.parse(bbController.text);
@@ -36,15 +40,32 @@ class _FormDeteksiState extends State<FormDeteksi> {
       });
       return;
     }
+    if (tb < 65 || tb > 120) {
+      setState(() {
+        alert = 'Tinggi harus berkisar antara 65-120cm';
+      });
+      return;
+    }
 
     setState(() {
       alert = '';
     });
 
-    final stuntingResult = await _service.checkStunting(tb);
+    final stuntingResult = await _service.checkStunting(tb, bb);
+
+    if (stuntingResult == -1) {
+      setState(() {
+        alert = 'Usia anak tidak memenuhi';
+      });
+      return;
+    }
+
     final weightResult = await _service.checkWeight(tb, bb);
-    
     widget.showResult([stuntingResult, weightResult]);
+    setState(() {
+      isLoading = false;
+      isDone = true;
+    });
   }
 
   @override
@@ -76,7 +97,11 @@ class _FormDeteksiState extends State<FormDeteksi> {
         const SizedBox(height: 10),
         if (alert.isNotEmpty) _buildAlert(alert),
         const SizedBox(height: 10),
-        GradientBorderButton(label: 'Cek Stunting', onTap: checkStunting),
+        GradientBorderButton(
+          label: 'Cek Stunting',
+          onTap: checkStunting,
+          isLoading: isLoading,
+        ),
       ],
     );
   }

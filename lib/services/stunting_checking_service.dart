@@ -1,9 +1,14 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:akusitumbuh/models/data_stunting_model.dart';
+import 'package:akusitumbuh/models/history_model.dart';
 import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class StuntingCheckingService {
+  final _auth = FirebaseAuth.instance;
+  final _ref = FirebaseFirestore.instance;
   final birthDate = DateTime(2023, 3, 17);
   final gender = 'boy';
 
@@ -85,7 +90,12 @@ class StuntingCheckingService {
     return (pow(weight / M, L) - 1) / (L * S);
   }
 
-  Future<int> checkStunting(double tb) async {
+  Future<int> checkStunting(double tb, double bb) async {
+    final month = ageInMonths(birthDate);
+    if (month < 24 || month > 60) {
+      print(month);
+      return -1;
+    }
     var data = getDataStunting(gender, ageInMonths(birthDate));
 
     final X = tb;
@@ -96,15 +106,20 @@ class StuntingCheckingService {
     final Z = calculateZScoreStunting(X, L, M, S);
 
     int stuntingResult = -1;
+    String status = '';
 
     if (Z >= -2) {
-      stuntingResult = 0; 
+      stuntingResult = 0;
+      status = 'Normal';
     } else if (Z >= -3) {
-      stuntingResult = 1; 
+      stuntingResult = 1;
+      status = 'Terdeteksi Stunting';
     } else {
-      stuntingResult = 2; 
+      stuntingResult = 2;
+      status = 'Stunting Berat';
     }
 
+    await insertHistory(tb, bb, status);
     return stuntingResult;
   }
 
@@ -121,13 +136,40 @@ class StuntingCheckingService {
     int weightResult = -1;
 
     if (Z > 2) {
-      weightResult = 2; 
+      weightResult = 2;
     } else if (Z < -2) {
-      weightResult = 1; 
-    } else {  
-      weightResult = 0; 
+      weightResult = 1;
+    } else {
+      weightResult = 0;
     }
 
     return weightResult;
+  }
+
+  Future<List<HistoryModel>> getAllHistory() async {
+    final uid = _auth.currentUser!.uid;
+
+    final snapshot = await _ref
+        .collection('history')
+        .where('userID', isEqualTo: uid)
+        .get();
+    return snapshot.docs.map((doc) => HistoryModel.fromFirestore(doc)).toList();
+  }
+
+  Future<void> insertHistory(double tb, double bb, String status) async {
+    final uid = _auth.currentUser!.uid;
+    final month = ageInMonths(birthDate);
+
+    await _ref
+        .collection('history')
+        .add(
+          HistoryModel(
+            userID: uid,
+            usia: month.toString(),
+            tb: tb,
+            bb: bb,
+            status: status,
+          ).toFirestore(),
+        );
   }
 }

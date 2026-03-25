@@ -4,7 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 class GradientBorderButton extends StatelessWidget {
   final String label;
   final GestureTapCallback onTap;
-  const GradientBorderButton({super.key, required this.label, required this.onTap});
+  final bool? isLoading;
+  const GradientBorderButton({
+    super.key,
+    required this.label,
+    required this.onTap,
+     this.isLoading,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +37,17 @@ class GradientBorderButton extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Text(
-            label,
-            style: GoogleFonts.lateef(
-              color: Color(0xFF92A7CD),
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-            textAlign: TextAlign.center,
-          ),
+          child: isLoading != null && isLoading!
+              ? CircularProgressIndicator(color: Color(0xFF92A7CD))
+              : Text(
+                  label,
+                  style: GoogleFonts.lateef(
+                    color: Color(0xFF92A7CD),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
         ),
       ),
     );

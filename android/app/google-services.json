@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "29500922359",
+    "project_id": "akusitumbuh-db",
+    "storage_bucket": "akusitumbuh-db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29500922359:android:53c2e7771e9e80ceacf6f2",
+        "android_client_info": {
+          "package_name": "com.example.akusitumbuh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjflIlcSKZSBSGh_iCy_vkqrurye77Ys4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

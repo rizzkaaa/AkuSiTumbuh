@@ -18,7 +18,7 @@ class HeaderText extends StatelessWidget {
             fontWeight: FontWeight.bold,
             foreground: Paint()
               ..style = PaintingStyle.stroke
-              ..strokeWidth = 5
+              ..strokeWidth = 4
               ..color = Color(0xFFCEAABD),
           ),
         ),

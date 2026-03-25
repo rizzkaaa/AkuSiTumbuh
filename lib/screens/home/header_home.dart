@@ -1,3 +1,5 @@
+import 'package:akusitumbuh/screens/home/home_photo.dart';
+import 'package:akusitumbuh/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,52 +10,7 @@ class HeaderHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        _buildLogo(),
-        Container(
-          padding: const EdgeInsets.all(3),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Color(0xFFB7C8E8), Color(0xFFF5B6D7)],
-            ),
-          ),
-          child: Container(
-            padding: const EdgeInsets.only(left: 5),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Row(
-              children: [
-                _buildIconButton(Icons.notifications, () {}),
-                _buildIconButton(Icons.location_on_outlined, () {}),
-
-                Container(
-                  padding: EdgeInsets.only(left: 3, top: 1, bottom: 1),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Color(0xFFB7C8E8), Color(0xFFF5B6D7)],
-                    ),
-                  ),
-
-                  child: CircleAvatar(
-                    radius: 25,
-                    backgroundImage: AssetImage(
-                      'assets/images/default-profile.png',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
+      children: [_buildLogo(), _buildContent(context)],
     );
   }
 
@@ -100,6 +57,53 @@ class HeaderHome extends StatelessWidget {
           colors: [Color(0xFFB7C8E8), Color(0xFFF5B6D7)],
         ).createShader(bounds),
         child: Icon(icon, size: 40, color: Color(0xFFE4E9FD)),
+      ),
+    );
+  }
+
+  Widget _buildProfileImage(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),)),
+      child: Container(
+        padding: EdgeInsets.only(left: 3, top: 1, bottom: 1),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFFB7C8E8), Color(0xFFF5B6D7)],
+          ),
+        ),
+
+        child: HomePhoto()
+      ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(3),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFFB7C8E8), Color(0xFFF5B6D7)],
+        ),
+      ),
+      child: Container(
+        padding: const EdgeInsets.only(left: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Row(
+          children: [
+            _buildIconButton(Icons.chat, () {}),
+            _buildIconButton(Icons.pin_drop_outlined, () {}),
+            _buildProfileImage(context),
+          ],
+        ),
       ),
     );
   }

@@ -11,7 +11,7 @@ class ChatController extends ChangeNotifier {
   ChatController._internal() {
     messages.add({
       'role': 'assistant',
-      'content': 'Halo! Apa yang ingin kamu ketahui tentang Bangka Belitung?',
+      'content': 'Halo! Aku Tumbi 👋 \nAda yang bisa aku bantu hari ini?',
     });
   }
 
@@ -24,17 +24,6 @@ class ChatController extends ChangeNotifier {
     if (text.isEmpty) return;
 
     messages.add({'role': 'user', 'content': text});
-
-    if (!text.toLowerCase().contains("bangka") &&
-        !text.toLowerCase().contains("belitung")) {
-      messages.add({
-        'role': 'assistant',
-        'content':
-            'Maaf, saya hanya menjawab tentang Bangka Belitung.',
-      });
-      notifyListeners();
-      return;
-    }
 
     isLoading = true;
     notifyListeners();
@@ -51,7 +40,22 @@ class ChatController extends ChangeNotifier {
               "role": "user",
               "parts": [
                 {
-                  "text": "User: $text",
+                  "text":
+                      """
+Kamu adalah asisten bernama Tumbi.
+Kamu hanya menjawab seputar tumbuh kembang anak.
+
+Aturan:
+- Gunakan bahasa sederhana dan ramah
+- Gunakan bullet point jika menjelaskan beberapa hal
+- Gunakan **bold** untuk poin penting
+- Jawaban singkat dan jelas
+- Jangan keluar dari topik anak
+- Jika user bertanya hal di luar tumbuh kembang anak, tolak secara halus
+
+Pertanyaan user:
+$text
+""",
                 },
               ],
             },
@@ -63,10 +67,7 @@ class ChatController extends ChangeNotifier {
       final candidates = data["candidates"];
 
       if (candidates == null || candidates.isEmpty) {
-        messages.add({
-          'role': 'assistant',
-          'content': 'Tidak ada jawaban.',
-        });
+        messages.add({'role': 'assistant', 'content': 'Tidak ada jawaban.'});
       } else {
         final reply = candidates[0]["content"]["parts"][0]["text"] ?? "";
         messages.add({'role': 'assistant', 'content': reply});
