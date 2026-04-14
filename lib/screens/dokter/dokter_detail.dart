@@ -191,7 +191,7 @@ class _DokterDetailState extends State<DokterDetail> {
                   child: Image(
                     image: (photo.toString().isNotEmpty)
                         ? photo.toImageProvider()
-                        : const AssetImage('assets/images/default-profile.png'),
+                        : AssetImage('assets/images/default-ava-${isPink ? 'pink' : 'blue'}.png'),
                     width: 132,
                   ),
                 ),
@@ -283,7 +283,7 @@ class _DokterDetailState extends State<DokterDetail> {
                           showDialog(
                             context: context,
                             barrierColor: Colors.black.withValues(alpha: 0.3),
-                            builder: (_) => DemandBanner(),
+                            builder: (_) => DemandBanner(dokterID: dokter.docId!,),
                           );
                         },
                       ),

@@ -97,7 +97,7 @@ class _State3State extends State<State3> {
                                   ),
                                   SizedBox(width: 8),
                                   SizedBox(
-                                    width: 220,
+                                    width: 180,
                                     child: Text(
                                       e,
                                       style: GoogleFonts.inriaSerif(

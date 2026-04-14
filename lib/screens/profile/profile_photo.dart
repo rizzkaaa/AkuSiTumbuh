@@ -48,7 +48,7 @@ class _ProfilePhotoState extends State<ProfilePhoto> {
 
  @override
   Widget build(BuildContext context) {
-    final AuthService _service = AuthService();
+    final AuthService service = AuthService();
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -120,7 +120,7 @@ class _ProfilePhotoState extends State<ProfilePhoto> {
                       await _pickImage();
 
                       if (_image != null) {
-                        await _service.uploadPhoto(_image!);
+                        await service.uploadPhoto(_image!);
                         widget.refresh();
                       setState(() {
                         _showCameraIcon = false;

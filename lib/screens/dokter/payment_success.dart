@@ -1,4 +1,5 @@
-import 'package:akusitumbuh/screens/chat/chat_list_screen.dart';
+import 'package:akusitumbuh/screens/chat/chat_screen.dart';
+import 'package:akusitumbuh/services/chat_service.dart';
 import 'package:akusitumbuh/widgets/gradient_backgtound3.dart';
 import 'package:akusitumbuh/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class PaymentSuccess extends StatelessWidget {
-  const PaymentSuccess({super.key});
+  final String dokterID;
+  PaymentSuccess({super.key, required this.dokterID});
 
+  final ChatService _service = ChatService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,13 +41,19 @@ class PaymentSuccess extends StatelessWidget {
               const SizedBox(height: 50),
               GradientButton(
                 label: 'Mulai Konsultasi',
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ChatListScreen(),
-                    ),
-                  );
+                onTap: () async {
+                  final roomchatID = await _service.getChatRoom(dokterID);
+                  if (context.mounted) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChatScreen(
+                          partnerID: dokterID,
+                          roomChatID: roomchatID,
+                        ),
+                      ),
+                    );
+                  }
                 },
               ),
               const SizedBox(height: 100),

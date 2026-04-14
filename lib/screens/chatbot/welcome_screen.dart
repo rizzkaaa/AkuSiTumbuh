@@ -23,7 +23,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       body: GradientBackground2(
         offset1: offset1,
         offset2: offset2,
-        content: SafeArea(
+        child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -81,7 +81,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               'Tanyakan apa saja seputar pertumbuhan, gizi, dan kesehatan anak.',
           label: 'Mulai',
           onTap: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const ChatScreen()),
             );

@@ -93,6 +93,10 @@ class AuthService {
     final doc = await _ref.collection('users').doc(uid).get();
     return UserModel.fromFirestore(doc);
   }
+  Future<UserModel> getAccountByID(String uid) async {
+    final doc = await _ref.collection('users').doc(uid).get();
+    return UserModel.fromFirestore(doc);
+  }
 
   Future<dynamic> getProfile(String role) async {
     final uid = _auth.currentUser!.uid;
@@ -104,6 +108,16 @@ class AuthService {
       return DokterAnakModel.fromFirestore(doc);
     }
   }
+
+  Future<dynamic> getProfileById(String role, String uid) async {
+  if (role == "Orang Tua") {
+    final doc = await _ref.collection('orang_tua').doc(uid).get();
+    return OrangTuaModel.fromFirestore(doc);
+  } else {
+    final doc = await _ref.collection('dokter_anak').doc(uid).get();
+    return DokterAnakModel.fromFirestore(doc);
+  }
+}
 
   Future<UserModel> getPhotoDokter(String id) async {
     final doc = await _ref.collection('users').doc(id).get();

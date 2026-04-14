@@ -2,13 +2,18 @@ import 'package:akusitumbuh/widgets/gradient_border_button.dart';
 import 'package:akusitumbuh/widgets/gradient_button.dart';
 import 'package:akusitumbuh/widgets/metal_text.dart';
 import 'package:flutter/material.dart';
-import 'package:akusitumbuh/screens/auth/login_page.dart';
-import 'package:akusitumbuh/services/auth_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LogoutAlert extends StatelessWidget {
-  LogoutAlert({super.key});
-  final AuthService _service = AuthService();
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+  const LogoutAlert({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +45,7 @@ class LogoutAlert extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Keluar dari akun?',
+                title,
                 style: GoogleFonts.libreBodoni(
                   color: Color(0xFF996781),
                   fontSize: 22,
@@ -48,11 +53,7 @@ class LogoutAlert extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              MetalText(
-                text: 'Kamu perlu login kembali untuk mengakses aplikasi.',
-                textAlign: TextAlign.center,
-                size: 16,
-              ),
+              MetalText(text: subtitle, textAlign: TextAlign.center, size: 16),
               const SizedBox(height: 30),
 
               Row(
@@ -62,20 +63,7 @@ class LogoutAlert extends StatelessWidget {
                     label: 'Batal',
                     onTap: () => Navigator.pop(context),
                   ),
-                  GradientButton(
-                    label: 'Keluar',
-                    onTap: () async {
-                      await _service.logout();
-                      if (context.mounted) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
-                          ),
-                        );
-                      }
-                    },
-                  ),
+                  GradientButton(label: 'Keluar', onTap: onTap),
                 ],
               ),
             ],

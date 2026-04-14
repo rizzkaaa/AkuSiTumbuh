@@ -39,7 +39,7 @@ class _SignUpPageState extends State<SignUpPage> {
       }
     } else {
       if (selectedRole == 'Dokter Anak') {
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (_) => FormProfile(
@@ -50,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         );
       } else if (selectedRole == 'Orang Tua') {
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (_) => FormProfile(

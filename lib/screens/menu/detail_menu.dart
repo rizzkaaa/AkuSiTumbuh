@@ -88,7 +88,7 @@ class DetailMenu extends StatelessWidget {
     );
   }
 
-  Widget _buildBackground(Widget content) {
+  Widget _buildBackground(Widget child) {
     return Stack(
       children: [
         Container(
@@ -104,7 +104,7 @@ class DetailMenu extends StatelessWidget {
             ),
           ),
         ),
-        content,
+        child,
       ],
     );
   }
@@ -123,7 +123,7 @@ class DetailMenu extends StatelessWidget {
 
   Widget _buildBoxExplanation({
     required String label,
-    required Widget content,
+    required Widget child,
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
@@ -139,7 +139,7 @@ class DetailMenu extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: content,
+            child: child,
           ),
         ],
       ),
@@ -149,7 +149,7 @@ class DetailMenu extends StatelessWidget {
   Widget _buildExplanation(String label, List<String> items) {
     return _buildBoxExplanation(
       label: label,
-      content: Column(
+      child: Column(
         children: items.map((item) => UnorderedList(text: item)).toList(),
       ),
     );
@@ -158,7 +158,7 @@ class DetailMenu extends StatelessWidget {
   Widget _buildHowToCook() {
     return _buildBoxExplanation(
       label: "Cara Memasak",
-      content: Column(
+      child: Column(
         children: item.caraMasak.asMap().entries.map((entry) {
           final index = entry.key;
           final value = entry.value;

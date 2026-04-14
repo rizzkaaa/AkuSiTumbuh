@@ -1,4 +1,3 @@
-import 'package:akusitumbuh/screens/auth/login_page.dart';
 import 'package:akusitumbuh/screens/homepage.dart';
 import 'package:akusitumbuh/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +22,12 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
         if (userID == null) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => OnboardingScreen()),
           );
         } else {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => Homepage()),
           );

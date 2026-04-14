@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
           isLoading = false;
         });
         if (result == null) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const Homepage()),
           );
@@ -156,7 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(width: 3),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const SignUpPage(),

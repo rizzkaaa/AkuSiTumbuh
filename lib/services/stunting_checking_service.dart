@@ -102,7 +102,6 @@ class StuntingCheckingService {
     if (month < 24 || month > 60) {
       return -1;
     }
-      print(month);
     var data = getDataStunting(orangTua.jenisKelamin, month);
 
     final X = tb;

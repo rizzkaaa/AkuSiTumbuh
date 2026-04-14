@@ -1,11 +1,13 @@
 import 'package:akusitumbuh/screens/profile/dokter_screen.dart';
-import 'package:akusitumbuh/screens/profile/logout_alert.dart';
+import 'package:akusitumbuh/widgets/logout_alert.dart';
 import 'package:akusitumbuh/screens/profile/orang_tua_screen.dart';
 import 'package:akusitumbuh/widgets/custom_back_button.dart';
 import 'package:akusitumbuh/widgets/gradient_background2.dart';
 import 'package:akusitumbuh/widgets/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:akusitumbuh/screens/auth/login_page.dart';
+import 'package:akusitumbuh/services/auth_service.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -15,6 +17,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final AuthService _service = AuthService();
   String? userID;
   String? userLevel;
 
@@ -36,7 +39,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GradientBackground2(
-        content: SafeArea(
+        offset1: [277, -91],
+        offset2: [-118, 150],
+        child: SafeArea(
           child: userID == null
               ? Center(child: CircularProgressIndicator(color: Colors.white))
               : Column(
@@ -63,8 +68,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
         ),
-        offset1: [277, -91],
-        offset2: [-118, 150],
       ),
     );
   }
@@ -81,7 +84,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
               showDialog(
                 context: context,
                 barrierColor: Colors.black.withValues(alpha: 0.3),
-                builder: (_) => LogoutAlert(),
+                builder: (_) => LogoutAlert(
+                  title: 'Keluar dari Akun?',
+                  subtitle:
+                      'Kamu perlu login kembali untuk mengakses aplikasi.',
+                  onTap: () async {
+                    await _service.logout();
+                    if (context.mounted) {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (_) => LoginPage()),
+                        (route) => false,
+                      );
+                    }
+                  },
+                ),
               );
             },
             icon: Icon(Icons.meeting_room, color: Colors.white, size: 30),

@@ -6,7 +6,10 @@ import 'package:akusitumbuh/screens/menu/menu_content.dart';
 import 'package:akusitumbuh/screens/stunting_detection/detection_content.dart';
 import 'package:akusitumbuh/screens/team/team_content.dart';
 import 'package:akusitumbuh/widgets/gradient_background.dart';
+import 'package:akusitumbuh/widgets/logout_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -26,15 +29,29 @@ class _HomepageState extends State<Homepage> {
     });
   }
 
+  String? userID;
+  String? userLevel;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userID = prefs.getString('userId');
+      userLevel = prefs.getString('userLevel');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final pages = [
+    final allPages = [
       {'icon': Icons.home_filled, 'content': HomeContent()},
       {'icon': Icons.search, 'content': DetectionContent(goToMenu: goToMenu)},
-      {
-        'icon': Icons.medical_information,
-        'content': ListDokterContent(),
-      },
+      {'icon': Icons.medical_information, 'content': ListDokterContent()},
       {
         'icon': Icons.restaurant,
         'content': MenuContent(indexResult: menuFilterIndex),
@@ -43,13 +60,38 @@ class _HomepageState extends State<Homepage> {
       {'icon': Icons.groups_2, 'content': TeamContent()},
     ];
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: GradientBackground(
-        content: SafeArea(child: pages[selectedIndex]['content'] as Widget),
+    final pages = userLevel == 'Orang Tua'
+        ? allPages
+        : [allPages[0], allPages[3], allPages[5]];
+
+    if (selectedIndex >= pages.length) {
+      selectedIndex = 0;
+    }
+
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        final keluar = await showDialog(
+          context: context,
+          builder: (_) => LogoutAlert(
+            title: 'Keluar Aplikasi',
+            subtitle: 'Anda yakin ingin keluar dari aplikasi?',
+            onTap: () => Navigator.pop(context, true),
+          ),
+        );
+
+        if (keluar == true) {
+          SystemNavigator.pop();
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: GradientBackground(
+          child: SafeArea(child: pages[selectedIndex]['content'] as Widget),
+        ),
+        floatingActionButton: ChatFloating(),
+        bottomNavigationBar: _customBottomNavBar(pages),
       ),
-      floatingActionButton: ChatFloating(),
-      bottomNavigationBar: _customBottomNavBar(pages),
     );
   }
 

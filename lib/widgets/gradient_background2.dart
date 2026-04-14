@@ -2,13 +2,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class GradientBackground2 extends StatelessWidget {
-  final Widget content;
+  final Widget child;
   final List<double> offset1;
   final List<double> offset2;
 
   const GradientBackground2({
     super.key,
-    required this.content,
+    required this.child,
     required this.offset1,
     required this.offset2,
   });
@@ -35,7 +35,7 @@ class GradientBackground2 extends StatelessWidget {
 
         _buildBlurLayer(offset1, 250, Color(0xFF92A6CD)),
         _buildBlurLayer(offset2, 270, Color(0xFFD6A7C9)),
-        content,
+        child,
       ],
     );
   }

@@ -170,7 +170,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         label: isLastPage ? 'Mulai' : 'Lanjut',
         onTap: () {
           if (isLastPage) {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const LoginPage()),
             );

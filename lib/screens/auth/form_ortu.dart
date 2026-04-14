@@ -68,7 +68,7 @@ class _FormOrtuState extends State<FormOrtu> {
           isLoading = false;
         });
         if (result == null) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const LoginPage()),
           );

@@ -46,3 +46,12 @@ extension Base64ImageExtension on String? {
     }
   }
 }
+
+extension DateTimeFormat on DateTime? {
+  String toTime() {
+    if (this == null) return '';
+    final hour = this!.hour.toString().padLeft(2, '0');
+    final minute = this!.minute.toString().padLeft(2, '0');
+    return "$hour:$minute";
+  }
+}

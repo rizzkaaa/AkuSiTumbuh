@@ -6,14 +6,15 @@ import 'package:akusitumbuh/widgets/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PayingScreen extends StatefulWidget {
-  const PayingScreen({super.key});
+class PaymentScreen extends StatefulWidget {
+  final String dokterID;
+  const PaymentScreen({super.key, required this.dokterID});
 
   @override
-  State<PayingScreen> createState() => _PayingScreenState();
+  State<PaymentScreen> createState() => _PaymentScreenState();
 }
 
-class _PayingScreenState extends State<PayingScreen> {
+class _PaymentScreenState extends State<PaymentScreen> {
   final List<String> banks = [
     'Bank Mandiri',
     'Bank BCA',
@@ -28,7 +29,7 @@ class _PayingScreenState extends State<PayingScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: GradientBackground(
-        content: SafeArea(
+        child: SafeArea(
           child: Column(
             children: [
               Row(
@@ -110,9 +111,9 @@ class _PayingScreenState extends State<PayingScreen> {
                   isLoading: false,
                   text: 'Bayar',
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => PaymentSuccess()),
+                      MaterialPageRoute(builder: (context) => PaymentSuccess(dokterID: widget.dokterID,)),
                     );
                   },
                 ),

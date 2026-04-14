@@ -113,7 +113,7 @@ class _FormDokterState extends State<FormDokter> {
         });
 
         if (result == null) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const LoginPage()),
           );

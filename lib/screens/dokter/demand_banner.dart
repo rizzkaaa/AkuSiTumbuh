@@ -1,10 +1,11 @@
-import 'package:akusitumbuh/screens/dokter/paying_screen.dart';
+import 'package:akusitumbuh/screens/dokter/payment_screen.dart';
 import 'package:akusitumbuh/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DemandBanner extends StatelessWidget {
-  DemandBanner({super.key});
+  final String dokterID;
+  DemandBanner({super.key, required this.dokterID});
 
   final List<String> fitur = [
     "✓ Konsultasi pribadi dengan dokter anak",
@@ -85,9 +86,17 @@ class DemandBanner extends StatelessWidget {
               ),
               const SizedBox(height: 28),
 
-              GradientButton(label: 'Beli', onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => PayingScreen(),));
-              }),
+              GradientButton(
+                label: 'Beli',
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PaymentScreen(dokterID: dokterID),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
