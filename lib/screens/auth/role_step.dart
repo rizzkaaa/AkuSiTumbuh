@@ -84,6 +84,22 @@ class RoleStep extends StatelessWidget {
                 ],
               ),
             ),
+            DropdownMenuItem(
+              value: 'Puskesmas',
+              child: Row(
+                children: [
+                  Icon(Icons.local_hospital, color: Color(0xFFD6A7C9)),
+                  SizedBox(width: 20),
+                  Text(
+                    'Puskesmas',
+                    style: GoogleFonts.inriaSerif(
+                      color: Color(0xFFD6A7C9),
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
           onChanged: onChanged,
         ),

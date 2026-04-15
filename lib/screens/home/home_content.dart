@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeContent extends StatelessWidget {
-  const HomeContent({super.key});
+  final String userLevel;
+  const HomeContent({super.key, required this.userLevel});
 
   List<EducationModel> _educations() {
     return [
@@ -73,7 +74,7 @@ class HomeContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 20),
-          HeaderHome(),
+          HeaderHome(userLevel: userLevel,),
           const SizedBox(height: 40),
           Image.asset('assets/images/banner-home.png'),
           const SizedBox(height: 25),

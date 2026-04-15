@@ -1,4 +1,5 @@
 import 'package:akusitumbuh/screens/profile/dokter_screen.dart';
+import 'package:akusitumbuh/screens/profile/puskesmas_screen.dart';
 import 'package:akusitumbuh/widgets/logout_alert.dart';
 import 'package:akusitumbuh/screens/profile/orang_tua_screen.dart';
 import 'package:akusitumbuh/widgets/custom_back_button.dart';
@@ -60,10 +61,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               userID: userID!,
                               userLevel: userLevel!,
                             )
-                          : DokterScreen(
+                          : userLevel! == "Dokter Anak" ?
+                          
+                           DokterScreen(
                               userID: userID!,
                               userLevel: userLevel!,
-                            ),
+                            ) : PuskesmasScreen(userID: userID!, userLevel: userLevel!),
                     ),
                   ],
                 ),

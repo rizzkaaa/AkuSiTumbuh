@@ -1,20 +1,21 @@
 import 'package:akusitumbuh/models/base_model.dart';
+import 'package:akusitumbuh/models/domisili_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PuskesmasModel extends BaseModel {
   final String _puskesmasName;
-  final String _domisili;
+  final DomisiliModel _domisili;
 
   PuskesmasModel({
     super.docId,
     required String puskesmasName,
-    required String domisili,
+    required DomisiliModel domisili,
     super.createdAt,
   }) : _puskesmasName = puskesmasName,
        _domisili = domisili;
 
   String get puskesmasName => _puskesmasName;
-  String get domisili => _domisili;
+  DomisiliModel get domisili => _domisili;
 
 
   factory PuskesmasModel.fromFirestore(DocumentSnapshot doc) {
@@ -22,7 +23,7 @@ class PuskesmasModel extends BaseModel {
     return PuskesmasModel(
       docId: doc.id,
       puskesmasName: data['puskesmasName'] ?? '-',
-      domisili: data['domisili'] ?? '-',
+      domisili: DomisiliModel.fromFirestore(Map<String, dynamic>.from(data['domisili'] ?? {})),
       createdAt: (data['createdAt'] as Timestamp?)?.toDate(),
     );
   }
@@ -30,7 +31,7 @@ class PuskesmasModel extends BaseModel {
   Map<String, dynamic> toFirestore() {
     return {
       'puskesmasName': _puskesmasName,
-      'domisili': _domisili,
+      'domisili': _domisili.toMap(), 
       'createdAt': FieldValue.serverTimestamp(),
     };
   }

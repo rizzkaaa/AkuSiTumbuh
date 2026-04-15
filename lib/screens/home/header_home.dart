@@ -1,11 +1,22 @@
 import 'package:akusitumbuh/screens/chat/chat_list_screen.dart';
 import 'package:akusitumbuh/screens/home/home_photo.dart';
+import 'package:akusitumbuh/screens/maps/map_page.dart';
 import 'package:akusitumbuh/screens/profile/profile_screen.dart';
+import 'package:akusitumbuh/services/chat_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HeaderHome extends StatelessWidget {
-  const HeaderHome({super.key});
+class HeaderHome extends StatefulWidget {
+  final String userLevel;
+  const HeaderHome({super.key, required this.userLevel});
+
+  @override
+  State<HeaderHome> createState() => _HeaderHomeState();
+}
+
+class _HeaderHomeState extends State<HeaderHome> {
+  final ChatService _service = ChatService();
+  late Stream<>
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +64,32 @@ class HeaderHome extends StatelessWidget {
   Widget _buildIconButton(IconData icon, GestureTapCallback onTap) {
     return GestureDetector(
       onTap: onTap,
-      child: ShaderMask(
-        shaderCallback: (bounds) => LinearGradient(
-          colors: [Color(0xFFB7C8E8), Color(0xFFF5B6D7)],
-        ).createShader(bounds),
-        child: Icon(icon, size: 40, color: Color(0xFFE4E9FD)),
+      child: Stack(
+        children: [
+          ShaderMask(
+            shaderCallback: (bounds) => LinearGradient(
+              colors: [Color(0xFFB7C8E8), Color(0xFFF5B6D7)],
+            ).createShader(bounds),
+            child: Icon(icon, size: 40, color: Color(0xFFE4E9FD)),
+          ),
+          Positioned(
+            right: 0,
+            child: Container(
+              width: 15,
+              height: 15,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFF68C3BF),
+              ),
+              child: Center(
+                child: Text(
+                  '1',
+                  style: TextStyle(fontSize: 10, color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -103,12 +135,20 @@ class HeaderHome extends StatelessWidget {
         ),
         child: Row(
           children: [
-            _buildIconButton(Icons.chat, () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ChatListScreen()),
-              );
-            }),
+            if (userLevel != 'Puskesmas')
+              _buildIconButton(Icons.chat, () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatListScreen()),
+                );
+              }),
+            if (userLevel == 'Puskesmas')
+              _buildIconButton(Icons.location_pin, () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MapsStuntingScreen()),
+                );
+              }),
             _buildProfileImage(context),
           ],
         ),

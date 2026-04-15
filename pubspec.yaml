@@ -48,6 +48,8 @@ dependencies:
   image_picker: ^1.2.1
   lottie: ^3.3.2
   intl: ^0.20.2
+  latlong2: ^0.9.1
+  flutter_map: ^8.3.0
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +81,12 @@ flutter:
     - assets/images/menu/
     - assets/images/stunting-indicator/
     - .env
+    - assets/data-maps/19.01_Bangka/19.01_Bangka.geojson
+    - assets/data-maps/19.02_Belitung/19.02_Belitung.geojson
+    - assets/data-maps/19.03_Bangka_Selatan/19.03_Bangka_Selatan.geojson
+    - assets/data-maps/19.04_Bangka_Tengah/19.04_Bangka_Tengah.geojson
+    - assets/data-maps/19.05_Bangka_Barat/19.05_Bangka_Barat.geojson
+    - assets/data-maps/19.06_Belitung_Timur/19.06_Belitung_Timur.geojson
 
 flutter_launcher_icons:
   android: true

@@ -107,13 +107,14 @@ class ChatService {
       await doc.update({'lastMessage.status': 1});
     }
   }
-  // Stream<int> getUnreadCount(String chatId) {
-  //   return _chatRef.doc(chatId).snapshots().map((doc) {
-  //     final data = doc.data() as Map<String, dynamic>;
-  //     final unread = data['unread'] ?? {};
-  //     return unread[_uid] ?? 0;
-  //   });
-  // }
+  
+  Stream<int> getUnreadCount(String chatId) {
+    return _chatRef.doc(chatId).snapshots().map((doc) {
+      final data = doc.data() as Map<String, dynamic>;
+      final unread = data['unread'] ?? {};
+      return unread[_uid] ?? 0;
+    });
+  }
 
   Stream<List<MessageModel>> getMessages(String chatId) {
     return _chatRef

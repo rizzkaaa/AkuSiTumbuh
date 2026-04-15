@@ -1,3 +1,4 @@
+import 'package:akusitumbuh/screens/auth/form_puskesmas.dart';
 import 'package:akusitumbuh/widgets/bg_create.dart';
 import 'package:akusitumbuh/screens/auth/form_dokter.dart';
 import 'package:akusitumbuh/screens/auth/form_ortu.dart';
@@ -5,7 +6,7 @@ import 'package:akusitumbuh/screens/auth/header_widget.dart';
 import 'package:flutter/material.dart';
 
 class FormProfile extends StatefulWidget {
-  final bool isDoctor;
+  final String role;
   final String email;
   final String password;
 
@@ -13,7 +14,7 @@ class FormProfile extends StatefulWidget {
     super.key,
     required this.email,
     required this.password,
-    required this.isDoctor,
+    required this.role,
   });
 
   @override
@@ -57,7 +58,7 @@ class _FormProfileState extends State<FormProfile> {
                   const Color(0xFFB7C8E8).withValues(alpha: 0.25),
                   const Color(0xFFD6A7C9).withValues(alpha: 0.25),
                 ],
-                child: widget.isDoctor
+                child: widget.role == 'Dokter Anak'
                     ? FormDokter(
                         email: email,
                         password: password,
@@ -67,7 +68,7 @@ class _FormProfileState extends State<FormProfile> {
                           });
                         },
                       )
-                    : FormOrtu(email: email, password: password),
+                    : widget.role == 'Orang Tua' ? FormOrtu(email: email, password: password) : FormPuskesmas(email: email, password: password),
               ),
             ],
           ),

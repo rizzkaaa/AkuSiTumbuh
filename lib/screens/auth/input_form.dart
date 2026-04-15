@@ -36,7 +36,7 @@ class InputForm extends StatelessWidget {
       style: GoogleFonts.libreCaslonText(
         fontSize: 16,
         color: const Color(0xFF9472C0),
-      ),
+      ), 
       maxLines: maxLine,
       decoration: InputDecoration(
         hintText: hint,

@@ -49,7 +49,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     final allPages = [
-      {'icon': Icons.home_filled, 'content': HomeContent()},
+      {'icon': Icons.home_filled, 'content': HomeContent(userLevel: userLevel ?? '',)},
       {'icon': Icons.search, 'content': DetectionContent(goToMenu: goToMenu)},
       {'icon': Icons.medical_information, 'content': ListDokterContent()},
       {

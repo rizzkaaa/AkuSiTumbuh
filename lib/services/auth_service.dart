@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:akusitumbuh/models/dokter_anak_model.dart';
 import 'package:akusitumbuh/models/orang_tua_model.dart';
+import 'package:akusitumbuh/models/puskesmas_model.dart';
 import 'package:akusitumbuh/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,6 +18,7 @@ class AuthService {
     required String password,
     OrangTuaModel? orangTua,
     DokterAnakModel? dokterAnak,
+    PuskesmasModel? puskesmas,
   }) async {
     final userCheck = await _ref
         .collection('users')
@@ -49,11 +51,16 @@ class AuthService {
             .collection('orang_tua')
             .doc(cred.user!.uid)
             .set(orangTua!.toFirestore());
-      } else {
+      } else if (role == 'Dokter Anak') {
         await _ref
             .collection('dokter_anak')
             .doc(cred.user!.uid)
             .set(dokterAnak!.toFirestore());
+      } else {
+        await _ref
+            .collection('puskesmas')
+            .doc(cred.user!.uid)
+            .set(puskesmas!.toFirestore());
       }
 
       return null;
@@ -93,6 +100,7 @@ class AuthService {
     final doc = await _ref.collection('users').doc(uid).get();
     return UserModel.fromFirestore(doc);
   }
+
   Future<UserModel> getAccountByID(String uid) async {
     final doc = await _ref.collection('users').doc(uid).get();
     return UserModel.fromFirestore(doc);
@@ -103,21 +111,29 @@ class AuthService {
     if (role == "Orang Tua") {
       final doc = await _ref.collection('orang_tua').doc(uid).get();
       return OrangTuaModel.fromFirestore(doc);
-    } else {
+    } else if (role == "Dokter Anak"){
       final doc = await _ref.collection('dokter_anak').doc(uid).get();
       return DokterAnakModel.fromFirestore(doc);
+    
+    } else {
+      final doc = await _ref.collection('puskesmas').doc(uid).get();
+      return PuskesmasModel.fromFirestore(doc);
     }
   }
 
   Future<dynamic> getProfileById(String role, String uid) async {
-  if (role == "Orang Tua") {
-    final doc = await _ref.collection('orang_tua').doc(uid).get();
-    return OrangTuaModel.fromFirestore(doc);
-  } else {
-    final doc = await _ref.collection('dokter_anak').doc(uid).get();
-    return DokterAnakModel.fromFirestore(doc);
+    if (role == "Orang Tua") {
+      final doc = await _ref.collection('orang_tua').doc(uid).get();
+      return OrangTuaModel.fromFirestore(doc);
+    } else if (role == "Dokter Anak"){
+      final doc = await _ref.collection('dokter_anak').doc(uid).get();
+      return DokterAnakModel.fromFirestore(doc);
+ 
+    } else {
+      final doc = await _ref.collection('puskesmas').doc(uid).get();
+      return PuskesmasModel.fromFirestore(doc);
+    }
   }
-}
 
   Future<UserModel> getPhotoDokter(String id) async {
     final doc = await _ref.collection('users').doc(id).get();
@@ -135,6 +151,7 @@ class AuthService {
     required String role,
     DokterAnakModel? dokterAnak,
     OrangTuaModel? orangTua,
+    PuskesmasModel? puskesmas,
   }) async {
     final user = _auth.currentUser;
     if (user == null) return ("Pengguna belum login");
@@ -145,11 +162,16 @@ class AuthService {
             .collection('orang_tua')
             .doc(user.uid)
             .update(orangTua!.toFirestore());
-      } else {
+      } else if (role == "Dokter Anak"){
         await _ref
             .collection('dokter_anak')
             .doc(user.uid)
             .update(dokterAnak!.toFirestore());
+      } else {
+        await _ref
+            .collection('puskesmas')
+            .doc(user.uid)
+            .update(puskesmas!.toFirestore());
       }
       return null;
     } catch (e) {

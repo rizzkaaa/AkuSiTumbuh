@@ -37,30 +37,43 @@ class _SignUpPageState extends State<SignUpPage> {
       if (_formKey.currentState!.validate()) {
         setState(() => currentStep = 1);
       }
-    } else {
-      if (selectedRole == 'Dokter Anak') {
-        Navigator.pushReplacement(
+    } else if (selectedRole != null) {
+        Navigator.push(
           context,
           MaterialPageRoute(
             builder: (_) => FormProfile(
-              isDoctor: true,
+              role: selectedRole!,
               email: emailController.text,
               password: passwordController.text,
             ),
           ),
         );
-      } else if (selectedRole == 'Orang Tua') {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (_) => FormProfile(
-              isDoctor: false,
-              email: emailController.text,
-              password: passwordController.text,
-            ),
-          ),
-        );
-      } else {
+      } 
+      //else if (selectedRole == 'Orang Tua') {
+      //   Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (_) => FormProfile(
+      //         role: 'Orang Tua',
+      //         email: emailController.text,
+      //         password: passwordController.text,
+      //       ),
+      //     ),
+      //   );
+       
+      // } else if (selectedRole == 'Puskesmas') {
+      //   Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (_) => FormProfile(
+      //         role: 'Puskesmas',
+      //         email: emailController.text,
+      //         password: passwordController.text,
+      //       ),
+      //     ),
+      //   );
+      // } 
+      else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -75,7 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
         );
       }
     }
-  }
+  
 
   @override
   Widget build(BuildContext context) {

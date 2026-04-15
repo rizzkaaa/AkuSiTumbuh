@@ -29,7 +29,7 @@ class _ChatScreenState extends State<ChatScreen> {
   DokterAnakModel? dokterProfile;
   OrangTuaModel? orangTuaProfile;
   UserModel? partnerAcc;
-  bool loading = true;
+  bool loading = true; 
 
   String? userID;
   String? userLevel;
