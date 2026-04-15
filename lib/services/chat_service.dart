@@ -108,13 +108,7 @@ class ChatService {
     }
   }
   
-  Stream<int> getUnreadCount(String chatId) {
-    return _chatRef.doc(chatId).snapshots().map((doc) {
-      final data = doc.data() as Map<String, dynamic>;
-      final unread = data['unread'] ?? {};
-      return unread[_uid] ?? 0;
-    });
-  }
+ 
 
   Stream<List<MessageModel>> getMessages(String chatId) {
     return _chatRef
@@ -140,38 +134,18 @@ class ChatService {
     });
   }
 
-  // Future<void> deleteChat(String chatId) async {
-  //   final messages = await _chatRef.doc(chatId).collection('message').get();
-
-  //   for (var doc in messages.docs) {
-  //     await doc.reference.delete();
-  //   }
-
-  //   await _chatRef.doc(chatId).delete();
-  // }
-
-  // Future<void> deleteAllChat() async {
-  //   final chats = await _chatRef.where('users', arrayContains: _uid).get();
-
-  //   for (var chat in chats.docs) {
-  //     await deleteChat(chat.id);
-  //   }
-  // }
-
   Future<void> deleteSelectedChats(List<String> chatIds) async {
   final batch = FirebaseFirestore.instance.batch();
 
   for (var chatId in chatIds) {
     final chatRef = _chatRef.doc(chatId);
 
-    // ambil semua message di subcollection
     final messages = await chatRef.collection('message').get();
 
     for (var doc in messages.docs) {
       batch.delete(doc.reference);
     }
 
-    // hapus chat utama
     batch.delete(chatRef);
   }
 
